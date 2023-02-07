@@ -6,8 +6,8 @@ namespace BeansBurgers_v2.Models {
     public class PaymentInfo {
 
         [Key]
-        public int PaymentId {get; set;}
-        public int CustomerId {get; set;}
+        public int Id {get; set;}
+        public IdentityUser Customer {get; set;}
         public string FirstName {get; set;}
         public string LastName {get; set;}
         public string StreetAddress {get; set;}

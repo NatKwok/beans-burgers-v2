@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace BeansBurgers_v2.Models {
@@ -6,13 +7,18 @@ namespace BeansBurgers_v2.Models {
     public class Order {
 
         [Key]
-        public int OrderId {get; set;}
-        public int CustomerId {get; set;}
-        public int PaymentInfoId {get; set;}
-        public int AddressId {get; set;}
-        public float Subtotal {get; set;}
-        public float Tax {get; set;}
-        public float Total {get; set;}
-        public string ItemList {get; set;}
+        public int Id {get; set;}
+        public IdentityUser Customer {get; set;}
+
+        [Column(TypeName="money")]
+        public decimal Total {get; set;}
+
+        [Column(TypeName="money")]
+        public decimal DeliveryCost {get; set;}
+
+        [Column(TypeName="money")]
+        public decimal Tax {get; set;}
+        public string StripePaymentCode { get; set;} // transaction confirmation
+        public ICollection<OrderItem> OrderItems {get; set;}
     }
 }
