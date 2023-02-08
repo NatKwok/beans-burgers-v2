@@ -33,22 +33,47 @@
         <a class="btn btn-sm btn-danger order-button float-right" title="Check out" asp-page="/Menu">Checkout</a>
     </div>
 </div>
-<div id="productsWrapper" class="row">
-@foreach (var product in Model.MenuItems)
-{
-    <div class="col-sm-3">
-        <a title="Order @product.Name">
-            <div class="productInfo">
-                <h3>@product.Name</h3>
-                @*<img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@product.ImageName" alt="Image of @product.Name" /> *@ 
-                <p class="description">@product.Description</p>
-            </div>
-        </a>
+<form method="post">
+    <div id="productsWrapper" class="row">
+        @foreach (var product in Model.MenuItems)
+        {
+            @if(@product.Id == 1)
+            {
+                <div>
+                    <h1> Side Dishes </h1>
+                    <hr/>
+                </div>
+            }
+            @if(@product.Id == 15)
+            {
+                <div>
+                    <br/>
+                    <h1> Burgers </h1>
+                </div>
+            }
+            <div class="col-sm-3">
+                <a title="Order @product.Name">
+                    <div class="productInfo">
+                        <h3>@product.Name</h3>
+                        @*<img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@product.ImageName" alt="Image of @product.Name" /> *@ 
+                        <p class="description">@product.Description</p>
+                    </div>
+                </a>
 
-        <div class="action">
-            <p class="price float-left">$@string.Format("{0:f}", product.Price)</p>
-            <a class="btn btn-sm btn-danger order-button float-right" asp-page="/order" asp-route-id="@product.Id" title="Order @product.Name">Order Now</a>
-        </div>
+                <div class="action">
+                    <p class="price float-left">$@string.Format("{0:f}", product.Price)</p>
+                    <input type="submit" class="btn btn-sm btn-danger order-button float-right" value="Order now" name="Order" title="Order @product.Name" onclick="postOrderItem(@product.Id)" />
+                </div>
+            </div>
+        }
     </div>
+</form>
+@functions
+{
+    int itemIndex = 0;
+    void postOrderItem(int index)
+    {
+        
+    }
+
 }
-</div>
