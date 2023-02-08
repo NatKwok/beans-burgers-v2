@@ -62,7 +62,7 @@
 
                 <div class="action">
                     <p class="price float-left">$@string.Format("{0:f}", product.Price)</p>
-                    <input type="submit" class="btn btn-sm btn-danger order-button float-right" value="Order now" name="Order" title="Order @product.Name" onclick="postOrderItem(@product.Id)" />
+                    <input type="submit" class="btn btn-sm btn-danger order-button float-right" asp-page="/Customize" asp-route-id="@Model.addedItem.Id" value="Order now" name="Order" title="Order @product.Name" onclick="postOrderItem(@product.Id)" />
                 </div>
             </div>
         }
