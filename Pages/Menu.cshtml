@@ -1,4 +1,54 @@
 ﻿@page
 @model BeansBurgers_v2.Pages.MenuModel
 @{
+    ViewData["Title"] = "Menu";
 }
+
+<h1>Beans Burgers</h1>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Cart
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <ul id="cart">
+            @foreach (var product in Model.OrderItems)
+            {
+                <li>
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+                                @product.MenuItem.Name
+                            </td>
+                            <td width="25%">
+                                @product.MenuItem.Price
+                            </td>
+                            <td width="25%">
+                                Del btn
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            }
+        </ul>
+        <a class="btn btn-sm btn-danger order-button float-right" title="Check out" asp-page="/Menu">Checkout</a>
+    </div>
+</div>
+<div id="productsWrapper" class="row">
+@foreach (var product in Model.MenuItems)
+{
+    <div class="col-sm-3">
+        <a title="Order @product.Name">
+            <div class="productInfo">
+                <h3>@product.Name</h3>
+                @*<img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@product.ImageName" alt="Image of @product.Name" /> *@ 
+                <p class="description">@product.Description</p>
+            </div>
+        </a>
+
+        <div class="action">
+            <p class="price float-left">$@string.Format("{0:f}", product.Price)</p>
+            <a class="btn btn-sm btn-danger order-button float-right" asp-page="/order" asp-route-id="@product.Id" title="Order @product.Name">Order Now</a>
+        </div>
+    </div>
+}
+</div>

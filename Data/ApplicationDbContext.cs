@@ -11,14 +11,13 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-    //public DbSet<Address> Addresses {get;set;}
-    public DbSet<Burger> Burgers {get;set;}
-    public DbSet<Ingredient> Ingredients {get;set;}
+    
     public DbSet<MenuItem> MenuItems {get;set;}
+    public DbSet<Ingredient> Ingredients {get;set;}
     public DbSet<Order> Orders {get;set;}
     public DbSet<OrderItem> OrderItems {get;set;}
     public DbSet<PaymentInfo> PaymentInfos {get;set;}
-    //public DbSet<Side> Sides {get;set;}
+    //public DbSet<Address> Addresses {get;set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -28,6 +27,6 @@ public class ApplicationDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfiguration(new ProductConfiguration()).Seed();
+        modelBuilder.ApplyConfiguration(new ProductConfiguration());
     }
 }
