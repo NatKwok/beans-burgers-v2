@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BeansBurgers_v2.Data
 {
-    public class ProductConfiguration : IEntityTypeConfiguration<Burger>
+    public class ProductConfiguration : IEntityTypeConfiguration<MenuItem>
     {
-        public void Configure(EntityTypeBuilder<Burger> builder)
+        public void Configure(EntityTypeBuilder<MenuItem> builder)
         {
         }
         public void Configure(EntityTypeBuilder<Ingredient> builder)

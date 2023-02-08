@@ -247,6 +247,7 @@ namespace BeansBurgers_v2.Data {
                     Id = 1,
                     Name = "Fries",
                     Price = 5.50f
+                  
                 },
                 new MenuItem
                 {
@@ -330,43 +331,51 @@ namespace BeansBurgers_v2.Data {
                 {
                    Id = 15,
                     Name = "La Basique",
-                    Price = 29.25f
+                    Price = 29.25f,
+                    Description = "Brioche Bread, Angus Beef, Lettuce, Tomatoes, Pickles, Ketchup, Mustard Relish"
+
                 },
                 new MenuItem
                 {
                     Id = 16,
                     Name = "Le Fumé",
-                    Price = 31.99f
+                    Price = 31.99f,
+                    Description = "Sesame Seed Brioche, Angus Beef, Caramelized Onions, Mushrooms, Cheddar Cheese, Bacon, Barbecue Sauce"
                 },
                 new MenuItem
                 {
                    Id = 17,
                     Name = "La Volaille",
-                    Price = 24.50f
+                    Price = 24.50f,
+                    Description = "Poppy Seed Brioche, Fried Chicken, Lettuce, Tomatoes, Goat Cheese, Spicy Mayonnaise"
                 },
                  new MenuItem
                 {
                     Id = 18,
                     Name = "La Piscicole",
-                    Price = 22.50f
+                    Price = 22.50f,
+                    Description = "Ciabatta, Fish Cake, Lettuce, Tomatoes, Pickles, Tartar Sauce"
                 },
                  new MenuItem
                 {
                     Id = 19,
                     Name = "Le Champignon",
-                    Price = 31.25f
+                    Price = 31.25f,
+                    Description = "Poppy Seed Brioche, Portobello, Lettuce, Tomatoes, Pickles, Red Onions, Ketchup, Mustard, Relish"
                 },
                 new MenuItem
                 {
                     Id = 20,
                     Name = "La Pastourelle",
-                    Price = 35.75f
+                    Price = 35.75f,
+                    Description = "Sesame Seed Brioche, Bison Patty, Lettuce, Tomatoes, Pickles, Caramelized Onions, Swiss Cheese, Mustard, Mayonnaise"
                 },
                 new MenuItem
                 {
                     Id = 21,
                     Name = "Le Mex",
-                    Price = 31.75f
+                    Price = 31.75f,
+                    Description = "Brioche, Angus Beef, Lettuce, Tomatoes, Pickles, Jalapeno Monterey Jack, Pico de Gallo, Guacamole"
                 }
             );
             return modelBuilder;

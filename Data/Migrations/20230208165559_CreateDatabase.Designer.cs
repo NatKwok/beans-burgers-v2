@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeansBurgersv2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230208160418_CreateDatabase")]
+    [Migration("20230208165559_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -25,22 +25,6 @@ namespace BeansBurgersv2.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BeansBurgers_v2.Models.Burger", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Burgers");
-                });
-
             modelBuilder.Entity("BeansBurgers_v2.Models.Ingredient", b =>
                 {
                     b.Property<int>("Id")
@@ -48,9 +32,6 @@ namespace BeansBurgersv2.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("BurgerId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -68,8 +49,6 @@ namespace BeansBurgersv2.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BurgerId");
 
                     b.HasIndex("MenuItemId");
 
@@ -310,6 +289,9 @@ namespace BeansBurgersv2.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -408,42 +390,49 @@ namespace BeansBurgersv2.Data.Migrations
                         new
                         {
                             Id = 15,
+                            Description = "Brioche Bread, Angus Beef, Lettuce, Tomatoes, Pickles, Ketchup, Mustard Relish",
                             Name = "La Basique",
                             Price = 29.25
                         },
                         new
                         {
                             Id = 16,
+                            Description = "Sesame Seed Brioche, Angus Beef, Caramelized Onions, Mushrooms, Cheddar Cheese, Bacon, Barbecue Sauce",
                             Name = "Le Fumé",
                             Price = 31.989999771118164
                         },
                         new
                         {
                             Id = 17,
+                            Description = "Poppy Seed Brioche, Fried Chicken, Lettuce, Tomatoes, Goat Cheese, Spicy Mayonnaise",
                             Name = "La Volaille",
                             Price = 24.5
                         },
                         new
                         {
                             Id = 18,
+                            Description = "Ciabatta, Fish Cake, Lettuce, Tomatoes, Pickles, Tartar Sauce",
                             Name = "La Piscicole",
                             Price = 22.5
                         },
                         new
                         {
                             Id = 19,
+                            Description = "Poppy Seed Brioche, Portobello, Lettuce, Tomatoes, Pickles, Red Onions, Ketchup, Mustard, Relish",
                             Name = "Le Champignon",
                             Price = 31.25
                         },
                         new
                         {
                             Id = 20,
+                            Description = "Sesame Seed Brioche, Bison Patty, Lettuce, Tomatoes, Pickles, Caramelized Onions, Swiss Cheese, Mustard, Mayonnaise",
                             Name = "La Pastourelle",
                             Price = 35.75
                         },
                         new
                         {
                             Id = 21,
+                            Description = "Brioche, Angus Beef, Lettuce, Tomatoes, Pickles, Jalapeno Monterey Jack, Pico de Gallo, Guacamole",
                             Name = "Le Mex",
                             Price = 31.75
                         });
@@ -748,10 +737,6 @@ namespace BeansBurgersv2.Data.Migrations
 
             modelBuilder.Entity("BeansBurgers_v2.Models.Ingredient", b =>
                 {
-                    b.HasOne("BeansBurgers_v2.Models.Burger", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("BurgerId");
-
                     b.HasOne("BeansBurgers_v2.Models.MenuItem", null)
                         .WithMany("Ingredients")
                         .HasForeignKey("MenuItemId");
@@ -837,11 +822,6 @@ namespace BeansBurgersv2.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BeansBurgers_v2.Models.Burger", b =>
-                {
-                    b.Navigation("Ingredients");
                 });
 
             modelBuilder.Entity("BeansBurgers_v2.Models.MenuItem", b =>
