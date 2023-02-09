@@ -17,6 +17,7 @@ namespace BeansBurgers_v2.Pages
         
         public async Task OnGetAsync(){
             Ingredients = await db.Ingredients.ToListAsync();
+            OrderItems = await db.OrderItems.ToListAsync();
         }
     }
 }
