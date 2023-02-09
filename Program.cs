@@ -26,10 +26,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddStripeInfrastructure(builder.Configuration);
 
 
-//Session
-builder.Services.AddSession();
-builder.Services.AddMemoryCache();
-builder.Services.AddMvc();
 
 
 var app = builder.Build();
@@ -50,17 +46,7 @@ else
 
 app.UseHttpsRedirection();
 
-
-//Session
 app.UseStaticFiles();
-app.UseSession();
-app.UseMvc(routes =>
-{
-    routes.MapRoute(
-        name: "default",
-        template: "{controller}/{action=Index}/{id?}");
-});
-////////
 
 app.UseRouting();
 
