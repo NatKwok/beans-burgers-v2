@@ -26,9 +26,10 @@ namespace BeansBurgers_v2.Pages
             int itemInt = Int32.Parse(itemIndex);
             MenuItem add = db.MenuItems.ToList().ElementAt(itemInt - 1);
 
-            OrderItem cartItem = new OrderItem { Id = db.OrderItems.Count() + 1, MenuItem = add };
+            OrderItem cartItem = new OrderItem { CustomBurger = add.Name, BurgerPrice = (float)add.Price, Quantity = 1 };
             Console.WriteLine(db.OrderItems.Count());
-            await db.OrderItems.AddAsync(cartItem);
+            db.OrderItems.Add(cartItem);
+            db.SaveChanges();
             Console.WriteLine(db.OrderItems.Count());
 
             Ingredients = await db.Ingredients.ToListAsync();
