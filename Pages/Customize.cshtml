@@ -1,0 +1,33 @@
+﻿@page "{id:int}"
+@model Bakery.Pages.CustomizeModel
+@{
+}
+<div>
+<h1>Beans Burgers</h1>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Cart
+    </button>
+
+    <form>
+        <div id="productsWrapper" class="row">
+        @foreach (var ingredient in Model.Ingredients)
+{
+    <div class="col-sm-3">
+        <a asp-page="/order" asp-route-id="@ingredient.Id" title="Order @ingredient.Name">
+            <div class="productInfo">
+                <h3>@ingredient.Name</h3>
+                <img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@ingredient" alt="Image of Ingredient" />
+            </div>
+        </a>
+        <div class="action">
+            <p class="price">$@string.Format("{0:f}", ingredient.ExtraCost)</p>
+                                <input type='button' value='-' class='minus' />
+                    <input type='text' size='10' class='value' value='0' />
+                    <input type='button' value='+' class='plus' />
+        </div>
+    </div>
+}
+        </div>
+    </form>
+</div>
