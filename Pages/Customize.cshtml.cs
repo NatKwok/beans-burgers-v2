@@ -3,7 +3,7 @@ using BeansBurgers_v2.Data;
 using BeansBurgers_v2.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bakery.Pages
+namespace BeansBurgers_v2.Pages
 {
     public class CustomizeModel : PageModel
     {
@@ -14,7 +14,6 @@ namespace Bakery.Pages
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
         public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();  
         public MenuItem MenuItem {get; set;}   
-        public int OrderQuantity { get; set; } = 1;   
         
         public async Task OnGetAsync(){
             Ingredients = await db.Ingredients.ToListAsync();
