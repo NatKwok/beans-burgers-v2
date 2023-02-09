@@ -14,6 +14,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+//Session
+builder.Services.AddSession();
+builder.Services.AddMemoryCache();
+builder.Services.AddMvc();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,7 +35,18 @@ else
 }
 
 app.UseHttpsRedirection();
+
+
+//Session
 app.UseStaticFiles();
+app.UseSession();
+app.UseMvc(routes =>
+{
+    routes.MapRoute(
+        name: "default",
+        template: "{controller}/{action=Index}/{id?}");
+});
+////////
 
 app.UseRouting();
 
