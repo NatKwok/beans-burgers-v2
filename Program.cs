@@ -26,6 +26,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddStripeInfrastructure(builder.Configuration);
 
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,6 +45,7 @@ else
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
