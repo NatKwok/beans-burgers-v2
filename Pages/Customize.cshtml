@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page 
 @model Bakery.Pages.CustomizeModel
 @{
 }
@@ -8,16 +8,84 @@
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Cart
     </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <ul id="cart">
+            @foreach (var product in Model.OrderItems)
+            {
+                <li>
+                    <table width="100%">
+                        <tr>
+                            <td width="50%">
+                                @product.MenuItem.Name
+                            </td>
+                            <td width="25%">
+                                @product.MenuItem.Price
+                            </td>
+                            <td width="25%">
+                                Del btn
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            }
+        </ul>
+        <a class="btn btn-sm btn-danger order-button float-right" title="Check out" asp-page="/Menu">Checkout</a>
+    </div>
+</div>
 
-    <form>
+    <form method="post">
+                     
+                    @* <div>
+                        <p class="description">You ordered a @Model.MenuItem.Name</p>
+                    </div>                 *@
+               
         <div id="productsWrapper" class="row">
         @foreach (var ingredient in Model.Ingredients)
 {
+    @if(@ingredient.Id == 1) {
+                        <div>
+                            <br>
+                    <h1> Buns </h1>
+                    <hr/>
+                </div>
+    }
+        @if(@ingredient.Id == 6) {
+                        <div>
+                            <br>
+                    <h1> Patties </h1>
+                    <hr/>
+                </div>
+    }
+
+        @if(@ingredient.Id == 12) {
+                        <div>
+                            <br>
+                    <h1> Toppings </h1>
+                    <hr/>
+                </div>
+    }
+            @if(@ingredient.Id == 19) {
+                        <div>
+                            <br>
+                    <h1> Cheese </h1>
+                    <hr/>
+                </div>
+    }
+
+                @if(@ingredient.Id == 24) {
+                        <div>
+                            <br>
+                    <h1> Sauces </h1>
+                    <hr/>
+                </div>
+    }
+
     <div class="col-sm-3">
-        <a asp-page="/order" asp-route-id="@ingredient.Id" title="Order @ingredient.Name">
+
+        <a title="Order @ingredient.Name">
             <div class="productInfo">
                 <h3>@ingredient.Name</h3>
-                <img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@ingredient" alt="Image of Ingredient" />
+                @* <img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@ingredient" alt="Image of Ingredient" /> *@
             </div>
         </a>
         <div class="action">
@@ -29,5 +97,35 @@
     </div>
 }
         </div>
+
     </form>
 </div>
+
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+
+        <script type="text/javascript">
+        /* Add/Subtract ingredients */
+$('.minus, .plus').click(function (e) {
+
+    e.preventDefault();    
+    var $input = $(this).siblings('.value');
+    var val = parseInt($input.val(), 10);
+
+    if (val >=0) {
+
+        $input.val(val + ($(this).hasClass('minus') ? -1 : 1)); 
+    }
+
+    else {
+
+        $input.val(val + 1); 
+        alert("You have no more of this ingredient");
+       
+    }
+
+
+});
+</script>
+}

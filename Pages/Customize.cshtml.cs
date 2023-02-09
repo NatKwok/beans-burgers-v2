@@ -11,7 +11,10 @@ namespace Bakery.Pages
         public CustomizeModel(ApplicationDbContext db) => this.db = db;
 
         public int Id {get; set;}
-        public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();        
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();  
+        public MenuItem MenuItem {get; set;}   
+        public int OrderQuantity { get; set; } = 1;   
         
         public async Task OnGetAsync(){
             Ingredients = await db.Ingredients.ToListAsync();
