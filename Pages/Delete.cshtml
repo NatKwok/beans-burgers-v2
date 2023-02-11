@@ -24,7 +24,7 @@
                                 @product.CustomBurger
                             </td>
                             <td width="25%">
-                                $@product.BurgerPrice
+                                $@string.Format("{0:0.00}", @product.BurgerPrice)
                             </td>
                             <td width="25%">
                                 <a asp-page="/Delete" asp-route-id="@product.Id">
