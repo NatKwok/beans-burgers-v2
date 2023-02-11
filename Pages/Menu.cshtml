@@ -3,7 +3,11 @@
 @{
     ViewData["Title"] = "Menu";
 }
-
+<style>
+    ul {
+        list-style-type: none;
+    }
+</style>
 <h1>Beans Burgers</h1>
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,7 +27,12 @@
                                 $@product.BurgerPrice
                             </td>
                             <td width="25%">
-                                Del btn
+                                <a asp-page="/Delete" asp-route-id="@product.Id">
+                                    <button>
+                                        Delete Item
+                                    </button>
+                                </a>
+                                
                             </td>
                         </tr>
                     </table>
