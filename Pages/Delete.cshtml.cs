@@ -17,7 +17,7 @@ namespace BeansBurgers_v2.Pages
             OrderItem item = new OrderItem() { Id = Id };
             db.OrderItems.Remove(item);
             db.SaveChanges();
-            LocalRedirect("/Menu");
+            RedirectToPage("Menu");
         }
     }
 }
