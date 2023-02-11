@@ -22,6 +22,7 @@ namespace BeansBurgers_v2.Pages
         }
 
         public async Task<IActionResult> OnPostAsync(){
+            Console.WriteLine("Post");
             string itemIndex = Request.Form["Order"];
             int itemInt = Int32.Parse(itemIndex);
             MenuItem add = db.MenuItems.ToList().ElementAt(itemInt - 1);

@@ -39,7 +39,8 @@
                 </li>
             }
         </ul>
-        <a class="btn btn-sm btn-danger order-button float-right" title="Check out" asp-page="/Menu">Checkout</a>
+        <form action="/create-checkout-session" method="POST"><button type="submit" class="btn btn-sm btn-danger order-button float-right">Checkout</button></form>
+        @*<a  title="Check out" asp-page="/Menu">Checkout</a>*@
     </div>
 </div>
 <form method="post" asp-page="/Menu">
