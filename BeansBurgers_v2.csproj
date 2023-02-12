@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-BeansBurgers_v2-3aa6293c-c2ee-41d8-aa10-6d18c59e6479</UserSecretsId>
   </PropertyGroup>
