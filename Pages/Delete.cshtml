@@ -7,7 +7,7 @@
     ul {
         list-style-type: none;
     }
-    h1, a, p, h3 {
+    h1, a, p, h3, hr {
         color: white;
     }
     button{
@@ -30,8 +30,12 @@
         border: none;
         color: red;
     }
-    .col-sm-3{
-        background-color: black;
+    
+    .col-sm-2{
+        background-image: radial-gradient(transparent, transparent, rgb(53, 53, 53));
+        margin: 5px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 1px 1px orange;
     }
 </style>
 <h1>Beans Burgers</h1>
@@ -87,7 +91,7 @@
                     <hr />
                 </div>
             }
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <a title="Order @product.Name">
                     <div class="productInfo">
                         <h3>@product.Name</h3>
