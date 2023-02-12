@@ -8,37 +8,47 @@ namespace BeansBurgers_v2.Pages
 {
     public class CustomizeModel : PageModel
     {
-        private ApplicationDbContext db;
-        public CustomizeModel(ApplicationDbContext db) => this.db = db;
+        private ApplicationDbContext _db;
+        // public CustomizeModel(ApplicationDbContext db) => this.db = db;
 
         public int Id {get; set;}
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-        public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();  
-        public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>();  
+        // public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>();  
         public MenuItem MenuItem {get; set;}
         public BunsEnum Buns {get; set;}
         public PattiesEnum Patties {get; set;}
-        public List<ToppingsEnum> Toppings {get; set;}
         public CheeseEnum Cheese {get; set;}
         public SauceEnum Sauce {get; set;}
+        public ToppingsEnum Toppings {get; set;}
 
+        public CustomizeModel(ApplicationDbContext db)  
+        {  
+            _db = db;  
+        }
         
-        public async Task OnGetAsync(){
-            Ingredients = await db.Ingredients.ToListAsync();
-            OrderItems = await db.OrderItems.ToListAsync();
-            MenuItem = await db.MenuItems.FirstOrDefaultAsync(b => b.Id == Id);
+        public async Task OnGet(int? id) {
+
+            MenuItem = await _db.MenuItems.FindAsync(id);
+            Console.WriteLine(MenuItem.Name);
+            
         }
 
-        public async Task<IActionResult> OnPostAsync(int? Id) {
+        public async Task<IActionResult> OnPostAsync(int id) {
 
-            var itemtoUpdate = await db.MenuItems.FirstOrDefaultAsync(a => a.Id == Id);
-            if(ModelState.IsValid) {
-              itemtoUpdate.Buns = BunsEnum.Poppy_Seed;
-
-              await db.SaveChangesAsync();
+            MenuItem itemfromDB = await _db.MenuItems.FindAsync(id);
+    Console.WriteLine(itemfromDB.Name);
+    Console.WriteLine(MenuItem.Id);
+                itemfromDB.Buns = MenuItem.Buns;
+                itemfromDB.Patties = MenuItem.Patties;
+                itemfromDB.Sauces = MenuItem.Sauces;
+                itemfromDB.Toppings = MenuItem.Toppings;
+                await _db.SaveChangesAsync();
+                return RedirectToPage("Menu");
                 
-            }
-            return Page();
+
+                return Page();
+            
+            
 
                 
             
