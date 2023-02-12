@@ -1,38 +1,38 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
-namespace BeansBurgers_v2.Models {
+namespace BeansBurgers_v2.Models
+{
 
-    public class MenuItem {
+    public class MenuItem
+    {
 
         [Key]
-        public int Id {get; set;}
-        public string Name {get; set;}
-        public double Price {get; set;}
-        public string Description {get; set;}
-        public BunsEnum Buns {get; set;}
-        public PattiesEnum Patties {get; set;}
-        public ToppingsEnum Toppings {get; set;}
-        public SauceEnum Sauces {get; set;}
-        
+        public int Id { get; set; }
+        public string PriceId { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public string Description { get; set; }
+        public BunsEnum Buns { get; set; }
+        public PattiesEnum Patties { get; set; }
+        public ToppingsEnum Toppings { get; set; }
+        public SauceEnum Sauces { get; set; }
+
         //public ICollection<Ingredient> Ingredients {get; set;}
 
         // enum Category { Dish Side, Burger, Drink Other}
     }
-     public enum BunsEnum
-        {
-            [Display(Name = "Brioche")]
-            Brioche = 0,
-            [Display(Name = "Ciabatta")]
-            Ciabatta = 1,
-            [Display(Name = "Sesame Seed")]
-            Sesame_Seed = 2,
-            [Display(Name = "Poppy Seed")]
-            Poppy_Seed = 3,
-            
-        }
+    public enum BunsEnum
+    {
+        Brioche = 0,
+        Ciabatta = 1,
+        Sesame_Seed = 2,
+        Poppy_Seed = 3,
 
-    public enum PattiesEnum {
+    }
+
+    public enum PattiesEnum
+    {
         Angus = 0,
         Fried_Chicken = 1,
         Fish_Cake = 2,
@@ -41,7 +41,8 @@ namespace BeansBurgers_v2.Models {
         Portobello = 5
     }
 
-    public enum ToppingsEnum {
+    public enum ToppingsEnum
+    {
         Lettuce = 0,
         Tomatoes = 1,
         Pickles = 2,
@@ -52,14 +53,16 @@ namespace BeansBurgers_v2.Models {
 
     }
 
-    public enum CheeseEnum {
+    public enum CheeseEnum
+    {
         Cheddar = 0,
         Jalepeno_Monterey_Jack = 1,
         Swiss = 2,
         Goat_Cheese = 3
     }
 
-    public enum SauceEnum {
+    public enum SauceEnum
+    {
         Ketchup = 0,
         Mustard = 1,
         Relish = 2,

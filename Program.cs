@@ -1,12 +1,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using BeansBurgers_v2.Data;
-using BeansBurgers_v2;
+using BeansBurgers_v2.Models;
 using Stripe;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+
+StripeConfiguration.ApiKey = builder.Configuration.GetValue<string>("Stripe:SecretKey");
+
+// Add StripeSettings to the service container
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
 
 
 // Add services to the container.
@@ -21,9 +30,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// Add Stripe Infrastructure
-builder.Services.AddStripeInfrastructure(builder.Configuration);
 
 
 

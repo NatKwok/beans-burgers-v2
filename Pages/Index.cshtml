@@ -3,48 +3,8 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<style>
-#top {
-    background-image: url("../wwwroot/images/Barack.jpg")
-}
-#top button{
-    padding: 1.5% 9% 1.5% 9%; 
-    border-radius: 20px;
-    font-size: 200%;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: white;
-    text-shadow: 0px 0px 1px white;
-    background-image: linear-gradient(orange, rgb(225, 122, 20));
-}
-#top a{
-    text-decoration: none;
-    color: white;
-}
-</style>
-<div class="text-center" id="top">
-    <h1 class="display-4" style="color: white; letter-spacing: 1px; font-weight: 500">Enter the World of Beans Burger</h1>
-    <h2 style="color: rgb(251, 137, 23); letter-spacing: 1px;">Haute Cuisine Hambourgeois</h2>
-    <hr style="color: rgb(251, 137, 23);"/>
-    <button class="btn btn-sm order-button"><a asp-page="/Menu">Order Now</a></button>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-<script>
-    var intro = document.getElementById("top");
-    var heights = window.innerHeight;
-    var middle = window.innerHeight / 4;
-    document.getElementById("top").style.paddingTop = middle + "px";
-
-    function resize()
-    {
-        document.getElementById("top").style.height = heights -1 + "px";
-    }
-
-    resize();
-    window.onresize = function() {
-        resize();
-    };
-
-    window.onscroll = function(){
-        resize();
-    };
-</script>

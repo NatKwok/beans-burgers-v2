@@ -3,39 +3,11 @@
 @{
     ViewData["Title"] = "Menu";
 }
+<script src="https://js.stripe.com/v3/"></script>
+
 <style>
     ul {
         list-style-type: none;
-    }
-    h1, a, p, h3, hr {
-        color: white;
-    }
-    button{
-    padding: 1.5% 9% 1.5% 9%; 
-    border-radius: 20px;
-    border: none;
-    font-size: 200%;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: white;
-    text-shadow: 0px 0px 1px white;
-    background-image: linear-gradient(orange, rgb(225, 122, 20));
-    }
-    a{
-        text-decoration: none;
-    }
-    .nope{
-        background-image: none;
-        background-color: transparent;
-        border: none;
-        color: red;
-    }
-    
-    .col-sm-2{
-        background-image: radial-gradient(transparent, transparent, rgb(53, 53, 53));
-        margin: 5px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 1px 1px orange;
     }
 </style>
 <h1>Beans Burgers</h1>
@@ -58,7 +30,7 @@
                             </td>
                             <td width="25%">
                                 <a asp-page="/Delete" asp-route-id="@product.Id">
-                                    <button class="nope">
+                                    <button style="border: none; background-color: transparent; color: red">
                                         <i class="material-icons">clear</i>
                                     </button>
                                 </a>
@@ -69,7 +41,22 @@
                 </li>
             }
         </ul>
-        <a class="btn btn-sm btn-danger order-button float-right" title="Check out" asp-page="/Menu">Checkout</a>
+        
+        <form action="/create-checkout-session" method="POST"><button type="submit" class="btn btn-sm btn-danger order-button float-right">Checkout</button>
+        <Script>
+requestMemberSession(priceId: string): void {
+    this.http
+        .post<ISession>(this.baseUrl + "BeansBurgers_v2/payments/create-checkout-session", {
+            priceId: priceId,
+        })
+
+        .payment((session) => {
+            this.redirectToCheckout(session.sessionId);
+        });
+}
+</Script>
+        </form>
+        
     </div>
 </div>
 <form method="post" asp-page="/Menu">
@@ -91,7 +78,7 @@
                     <hr />
                 </div>
             }
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <a title="Order @product.Name">
                     <div class="productInfo">
                         <h3>@product.Name</h3>
