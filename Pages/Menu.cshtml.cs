@@ -4,21 +4,25 @@ using BeansBurgers_v2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace BeansBurgers_v2.Pages
 {
     public class MenuModel : PageModel
     {
+        public int Id {get; set;}
         private ApplicationDbContext db;
         public MenuModel(ApplicationDbContext db) => this.db = db;
         public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
         public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>(); 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); 
+        public MenuItem MenuItem {get; set;}
 
         
         public async Task OnGetAsync(){
             Ingredients = await db.Ingredients.ToListAsync();
             MenuItems = await db.MenuItems.ToListAsync();
             OrderItems = await db.OrderItems.ToListAsync();
+            MenuItem = await db.MenuItems.FindAsync(Id);
         }
 
         public async Task<IActionResult> OnPostAsync(){

@@ -1,15 +1,17 @@
-﻿@page 
+﻿@page "{id:int}"
 @model BeansBurgers_v2.Pages.CustomizeModel 
 @{ ViewData["Title"] = "Customize"; 
 
 } 
 
 <div>
-  <h1>Beans Burgers</h1>
+ @* <h1>Customize your Burger: @Model.MenuItem.Name</h1> *@
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cart </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <ul id="cart"> @foreach (var product in Model.OrderItems) { <li>
+      <ul id="cart"> 
+        
+        @foreach (var product in Model.OrderItems) { <li>
           <table width="100%">
             <tr>
               <td width="50%"> @product.CustomBurger </td>
@@ -22,102 +24,9 @@
     </div>
   </div>
   <form method="post" asp-asp-page="/Customize"> 
-    
+    <input type="hidden" asp-for="MenuItem.Id"/>
      <div id="productsWrapper" class="row"> 
         
-        @* @foreach (var ingredient in Model.Ingredients) 
-        
-        { 
-            @if (@ingredient.Id ==1)
-            {
-                                <div>
-                    <h1> Buns </h1>
-                    <hr/>
-                </div>
-            }
-
-                        @if (@ingredient.Id ==6)
-            {
-                                <div>
-                    <h1> Patties </h1>
-                    <hr/>
-                </div>
-            }
-
-                                    @if (@ingredient.Id ==12)
-            {
-                                <div>
-                    <h1> Toppings </h1>
-                    <hr/>
-                </div>
-            }
-                                    @if (@ingredient.Id ==19)
-            {
-                                <div>
-                    <h1> Cheese </h1>
-                    <hr/>
-                </div>
-            }
-                                    @if (@ingredient.Id ==24)
-            {
-                                <div>
-                    <h1> Sauce </h1>
-                    <hr/>
-                </div>
-            }
-
-
-            @if(@ingredient.Category == 0) { <div>
-        <a title="Order @ingredient.Name">
-          <div class="productInfo">
-            <h3>@ingredient.Name</h3>
-          </div>
-        </a>
-        <div class="action">
-          <p class="price">$@string.Format("{0:0.00}", ingredient.ExtraCost)</p>
-          <input type="radio" id="@ingredient.Id" value="@ingredient.Id" /> 
-        </div>
-      </div> } 
-      
-      @if(@ingredient.Category == 1) { <div>
-        <a title="Order @ingredient.Name">
-          <div class="productInfo">
-            <h3>@ingredient.Name</h3> 
-          </div>
-        </a>
-        <div class="action">
-          <p class="price">$@string.Format("{0:0.00}", ingredient.ExtraCost)</p>
-          <input type="radio" id="@ingredient.Id" value="@ingredient.Id" /> 
-        </div>
-      </div> } 
-      
-      @if(@ingredient.Category == 2) { <div>
-        <a title="Order @ingredient.Name">
-          <div class="productInfo">
-            <h3>@ingredient.Name</h3> 
-          </div>
-        </a>
-
-
-        <div class="action">
-          <p class="price">$@string.Format("{0:0.00}", ingredient.ExtraCost)</p>
-          <input type="checkbox" id="@ingredient.Id" value="@ingredient.Id" /> 
-        </div>
-      </div> } 
-      
-      @if(@ingredient.Category == 3) { <div>
-        <a title="Order @ingredient.Name">
-          <div class="productInfo">
-            <h3>@ingredient.Name</h3> 
-          </div>
-        </a>
-        <div class="action">
-          <p class="price">$@string.Format("{0:0.00}", ingredient.ExtraCost)</p>
-          <input type="checkbox" id="@ingredient.Id" value="@ingredient.Id" /> 
-        </div>
-      </div> } 
-      
-     }  *@
  <div>
                     <h1> Buns </h1>
                     <hr/>
@@ -126,7 +35,8 @@
      @foreach (var buns in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.BunsEnum)))
      {
         <label asp-for="Buns">@buns</label>
-        <input type="radio" asp-for="Buns" value="BunsEnum"/>
+        <input type="radio" asp-for="Buns" value="@buns"/>
+       
      }
       <div>
                     <h1> Patties </h1>
@@ -135,7 +45,7 @@
           @foreach (var patties in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.PattiesEnum)))
      {
         <label asp-for="Patties">@patties</label>
-        <input type="radio" asp-for="Patties" value="PattiesEnum"/>
+        <input type="radio" asp-for="Patties" value="@patties"/>
      }
       <div>
                     <h1> Toppings </h1>
@@ -145,7 +55,7 @@
           @foreach (var toppings in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.ToppingsEnum)))
      {
         <label asp-for="Toppings">@toppings</label>
-        <input type="radio" asp-for="Toppings" value="ToppingsEnum"/>
+        <input type="radio" asp-for="Toppings" value="@toppings"/>
      }
       <div>
                     <h1> Cheese </h1>
@@ -154,7 +64,7 @@
           @foreach (var cheese in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.CheeseEnum)))
      {
         <label asp-for="Cheese">@cheese</label>
-        <input type="radio" asp-for="Cheese" value="CheeseEnum"/>
+        <input type="radio" asp-for="Cheese" value="@cheese"/>
      }
       <div>
                     <h1> Sauces </h1>
@@ -163,7 +73,7 @@
           @foreach (var sauce in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.SauceEnum)))
      {
         <label asp-for="Sauce">@sauce</label>
-        <input type="radio" asp-for="Sauce" value="SauceEnum"/>
+        <input type="radio" asp-for="Sauce" value="@sauce"/>
      }
      
      </div>

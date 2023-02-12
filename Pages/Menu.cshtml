@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model BeansBurgers_v2.Pages.MenuModel
 @{
     ViewData["Title"] = "Menu";
@@ -104,9 +104,25 @@
                 <div class="action">
                     <p class="price float-left">$@string.Format("{0:0.00}", product.Price)</p>
                     <button class="btn btn-sm btn-danger order-button float-right" name="Order" value="@product.Id" type="submit" title="Order @product.Name">Order Now</button>
-                    @*<input type="submit" class="btn btn-sm btn-danger order-button float-right" value="Order now" name="Order" title="Order @product.Name" onclick="postOrderItem(@product.Id)" />*@
+                    <a class="btn btn-sm btn-danger order-button float-right" asp-page="/Customize" asp-route-id="@product.Id" title="Customize @product.Name">Customize</a>
+
                 </div>
             </div>
         }
     </div>
 </form>
+@functions
+{
+
+}
+@section scripts{
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(function () {
+            $('button.details').on('click', function () {
+                $('.modal-body').load(`/masterdetails/product?id=${$(this).data('id')}`);
+            });
+        })
+    </script>
+}
