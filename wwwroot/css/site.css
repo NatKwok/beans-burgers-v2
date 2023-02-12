@@ -14,9 +14,22 @@ html {
 
 html {
   position: relative;
-  min-height: 100%;
 }
 
 body {
   margin-bottom: 60px;
+  background-color: rgb(66, 66, 66);
+}
+
+#topnav{
+  background-image: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42));
+  border-bottom: 1px solid rgb(255, 184, 118);
+}
+
+footer{
+  text-align: center; 
+  height: 10px;
+  background-image: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42));
+  border-top: 1px solid rgb(255, 184, 118);
+  color: rgb(251, 137, 23);
 }
