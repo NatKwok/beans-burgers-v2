@@ -18,11 +18,13 @@ namespace BeansBurgers_v2.Pages
 
         public async Task<IActionResult> OnGetAsync(){
             OrderItem item = new OrderItem() { Id = Id };
+            Console.WriteLine(Id);
             db.OrderItems.Remove(item);
             db.SaveChanges();
             MenuItems = await db.MenuItems.ToListAsync();
             OrderItems = await db.OrderItems.ToListAsync();
             return RedirectToPage("Menu");
+            // return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(){

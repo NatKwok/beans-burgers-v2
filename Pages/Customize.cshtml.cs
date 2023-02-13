@@ -176,14 +176,20 @@ namespace BeansBurgers_v2.Pages
             int separatorIndex = Id.IndexOf(',');
             ItemId = Int32.Parse(Id.Substring(0, separatorIndex));
             ItemName = Id.Substring(separatorIndex + 1);
-            Console.WriteLine(ItemName);
-            Console.WriteLine(ItemId);
-            OrderItem item = new OrderItem() { Id = ItemId, CustomBurger = ItemName, Description = description, Quantity=qty};
-            _db.OrderItems.Add(item);
+            MenuItem add;
+            double price = 0;
+            for(int i = 0; i < _db.MenuItems.ToList().Count(); i++){
+                if(_db.MenuItems.ToList()[i].Name == ItemName){
+                    add = _db.MenuItems.ToList()[i];
+                    price = _db.MenuItems.ToList()[i].Price;
+                }
+            }
+            Console.WriteLine(price);
+            OrderItem item = new OrderItem() { CustomBurger = ItemName, Description = description, Quantity=qty, BurgerPrice = (float)price};
+            _db.OrderItems.Update(item);
             _db.SaveChanges();
-           
 
-            return RedirectToPage("Menu");
+            return RedirectToPage("Delete", new {id = ItemId});
         }
 
     }
