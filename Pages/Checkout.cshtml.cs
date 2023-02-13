@@ -25,13 +25,14 @@ namespace BeansBurgers_v2.Pages
                 totalPrice += (db.OrderItems.ToList()[i].BurgerPrice * db.OrderItems.ToList()[i].Quantity);
             }
             totalPrice *= 1.15;   
-            System.IO.File.WriteAllText("../Receipts/Order.txt", dataString);
+            dataString = string.Concat(dataString, "Total price = " + totalPrice);
+            System.IO.File.WriteAllText("../AppIIBeansBurgers_v2/Receipts/Order.txt", dataString);
             string connectionString = "DefaultEndpointsProtocol=https;AccountName=beansburgersblobs;AccountKey=aIWyiqsEk6SOUkU7+mTdMkTZtyMzVUuTYVnAyyFJYwhmpaWejxjC3nbQoDY+wkuCl1gmLTCC77zV+AStC1YVBw==;EndpointSuffix=core.windows.net";
-            string storageContainer = "beansburgersblobs";
+            string storageContainer = "beansburgers";
             BlobContainerClient azContainer = new BlobContainerClient(connectionString, storageContainer);
-            string fileName = Path.GetFileName("../Receipts/Order.txt");
+            string fileName = Path.GetFileName("../AppIIBeansBurgers_v2/Receipts/Order.txt");
             BlobClient blobClient = azContainer.GetBlobClient(fileName);
-            await blobClient.UploadAsync("../Receipts/Order.txt", true);
+            await blobClient.UploadAsync("../AppIIBeansBurgers_v2/Receipts/Order.txt", true);
             return RedirectToPage("Menu");
         }
 
