@@ -13,6 +13,7 @@ namespace BeansBurgers_v2.Models {
         public string CustomBurger {get; set;}
         public float BurgerPrice {get; set;}
         public int Quantity {get; set;}
+        public string Description {get; set;}
         
     }
 }

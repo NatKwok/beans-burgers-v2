@@ -16,13 +16,13 @@ namespace BeansBurgers_v2.Pages
         [BindProperty(SupportsGet =true)]
         public int Id { get; set; }
 
-        public async Task OnGetAsync(){
+        public async Task<IActionResult> OnGetAsync(){
             OrderItem item = new OrderItem() { Id = Id };
             db.OrderItems.Remove(item);
             db.SaveChanges();
             MenuItems = await db.MenuItems.ToListAsync();
             OrderItems = await db.OrderItems.ToListAsync();
-            Redirect("http://localhost:5280/Menu");
+            return RedirectToPage("Menu");
         }
 
         public async Task<IActionResult> OnPostAsync(){

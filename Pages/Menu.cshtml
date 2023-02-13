@@ -6,6 +6,7 @@
 <style>
     ul {
         list-style-type: none;
+        color: white;
     }
     h1, a, p, h3, hr {
         color: white;
@@ -29,6 +30,8 @@
         background-color: transparent;
         border: none;
         color: red;
+        padding: none;
+        margin: none;
     }
     
     .col-sm-2{
@@ -38,86 +41,91 @@
         box-shadow: 0px 0px 1px 1px orange;
     }
 </style>
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Cart
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<div class="columns">
+    <div class= "column is-3">
+        <p> Current Order </p>
+        <hr/>
         <ul id="cart">
             @foreach (var product in Model.OrderItems)
             {
                 <li>
-                    <table width="100%">
-                        <tr>
-                            <td width="50%">
-                                @product.CustomBurger
-                            </td>
-                            <td width="25%">
-                                $@string.Format("{0:0.00}", @product.BurgerPrice)
-                            </td>
-                            <td width="25%">
-                                <a asp-page="/Delete" asp-route-id="@product.Id">
+                    <div class="columns">
+                        <div class="column" style="text-align: left">
+                            <a asp-page="/Delete" asp-route-id="@product.Id">
                                     <button class="nope">
                                         <i class="material-icons">clear</i>
                                     </button>
-                                </a>
-                                
-                            </td>
-                        </tr>
-                    </table>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a asp-page="/Customize" asp-route-id="@product.Id,@product.CustomBurger">
+                                    <button class="nope">
+                                        <i class="material-icons">create</i>
+                                    </button>
+                            </a>
+                        </div>
+                        <div class="column" style="text-align: left">
+                            @product.CustomBurger
+                        </div>
+                        <div class="column" style="text-align: left">
+                             $@string.Format("{0:0.00}", @product.BurgerPrice)
+                        </div>
+                        
+                    </div>
                 </li>
             }
         </ul>
-        <form action="/create-checkout-session" method="POST"><button type="submit" class="btn btn-sm btn-danger order-button float-right" id="checkout-button">Checkout</button></form>
-        @*<a  title="Check out" asp-page="/Menu">Checkout</a>*@
+    </div>
+    <div class= "column is-9">
+        <form method="post" asp-page="/Menu">
+            <div id="productsWrapper" class="row">
+                @foreach (var product in Model.MenuItems)
+                {
+                    @if(@product.Id == 1)
+                    {
+                        <div>
+                            <h1> Side Dishes </h1>
+                            <hr/>
+                        </div>
+                    }
+                    @if(@product.Id == 15)
+                    {
+                        <div>
+                            <br/>
+                            <h1> Burgers </h1>
+                            <hr />
+                        </div>
+                    }
+                    <div class="col-sm-2">
+                        <a title="Order @product.Name">
+                            <div class="productInfo">
+                                <h3>@product.Name</h3>
+                                <hr/>
+                                @*<img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@product.ImageName" alt="Image of @product.Name" /> *@ 
+                                <p class="description">@product.Description</p>
+                            </div>
+                        </a>
+
+                        <div class="action">
+                            <div class="columns">
+                                <div class="column">
+                                    <p class="price float-left">$@string.Format("{0:0.00}", product.Price)</p>
+                                    <button class="btn btn-sm btn-danger order-button float-left" name="Order" value="@product.Id" type="submit" title="Order @product.Name">Add to Order</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                }
+            </div>
+        </form>
     </div>
 </div>
-<form method="post" asp-page="/Menu">
-    <div id="productsWrapper" class="row">
-        @foreach (var product in Model.MenuItems)
-        {
-            @if(@product.Id == 1)
-            {
-                <div>
-                    <h1> Side Dishes </h1>
-                    <hr/>
-                </div>
-            }
-            @if(@product.Id == 15)
-            {
-                <div>
-                    <br/>
-                    <h1> Burgers </h1>
-                    <hr />
-                </div>
-            }
-            <div class="col-sm-2">
-                <a title="Order @product.Name">
-                    <div class="productInfo">
-                        <h3>@product.Name</h3>
-                        <hr/>
-                        @*<img class="product-image img-fluid img-thumbnail" src="~/Images/Products/Thumbnails/@product.ImageName" alt="Image of @product.Name" /> *@ 
-                        <p class="description">@product.Description</p>
-                    </div>
-                </a>
 
-                <div class="action">
-                    <p class="price float-left">$@string.Format("{0:0.00}", product.Price)</p>
-                    <button class="btn btn-sm btn-danger order-button float-right" name="Order" value="@product.Id" type="submit" title="Order @product.Name">Order Now</button>
-                    <a class="btn btn-sm btn-danger order-button float-right" asp-page="/Customize" asp-route-id="@product.Id" title="Customize @product.Name">Customize</a>
 
-                </div>
-            </div>
-        }
-    </div>
-</form>
-@functions
-{
 
-}
 @section scripts{
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
         $(function () {
             $('button.details').on('click', function () {

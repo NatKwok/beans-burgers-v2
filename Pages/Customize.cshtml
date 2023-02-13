@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{id}"
 @model BeansBurgers_v2.Pages.CustomizeModel 
 @{ ViewData["Title"] = "Customize"; 
 
@@ -7,7 +7,7 @@
     ul {
         list-style-type: none;
     }
-    h1, a, p, h3, hr, label {
+    h1, a, p, h3, h4, hr, label {
         color: white;
     }
     button{
@@ -40,80 +40,127 @@
 </style>
 
 <div>
- @* <h1>Customize your Burger: @Model.MenuItem.Name</h1> *@
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Cart </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <ul id="cart"> 
-        
-        @foreach (var product in Model.OrderItems) { <li>
-          <table width="100%">
-            <tr>
-              <td width="50%"> @product.CustomBurger </td>
-              <td width="25%"> $@string.Format("{0:0.00}", product.BurgerPrice) </td>
-              <td width="25%"> Del btn </td>
-            </tr>
-          </table>
-        </li> } </ul>
-      <a class="btn btn-sm btn-danger order-button float-right" title="Check out" asp-page="/Menu">Checkout</a>
-    </div>
-  </div>
   <form method="post" asp-asp-page="/Customize"> 
+    <input type="number" value="1" name="Quantity">
+    <a asp-page="/Customize"><button type="submit" name="Accept" value="">Complete Customization</button></a>
     <input type="hidden" asp-for="MenuItem.Id"/>
-     <div id="productsWrapper" class="row"> 
-        
- <div>
-                    <h1> Buns </h1>
-                    <hr/>
-                </div>
-
-     @foreach (var buns in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.BunsEnum)))
-     {
-        <label class="col-sm-2" asp-for="Buns">@buns</label>
-        <input type="radio" asp-for="Buns" value="@buns"/>
-       
-     }
+    <div id="productsWrapper" class="row">     
       <div>
-                    <h1> Patties </h1>
-                    <hr/>
-                </div>
-          @foreach (var patties in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.PattiesEnum)))
-     {
-        <label class="col-sm-2" asp-for="Patties">@patties</label>
-        <input type="radio" asp-for="Patties" value="@patties"/>
-     }
+        <h1> Buns </h1>
+        <hr/>
+      </div>
+      @foreach (var buns in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.BunsEnum)))
+      {
+        <div class="columns">
+          <div class="column is-3">
+            <label asp-for="Buns">@buns</label>
+          </div>
+          <div class="column is-1">
+            <input type="radio" asp-for="Buns" name="@buns" value="@buns"/>
+          </div>
+        </div>
+      }
+      
       <div>
-                    <h1> Toppings </h1>
-                    <hr/>
-                </div>
-
-          @foreach (var toppings in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.ToppingsEnum)))
-     {
-        <label class="col-sm-2" asp-for="Toppings">@toppings</label>
-        <input type="radio" asp-for="Toppings" value="@toppings"/>
-     }
+        <h1> Patties </h1>
+        <hr/>
+      </div>
+      @foreach (var patties in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.PattiesEnum)))
+      {
+        <div class="columns">
+          <div class="column is-3">
+            <h4>@patties</h4>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="none" name="@patties" value="None">
+            <label for="none">None</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Normal" name="@patties" value="Normal">
+            <label for="Normal">Normal</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Double" name="@patties" value="Double">
+            <label for="Double">Double</label>
+          </div>
+        </div>
+      }
+      <br/>
+      <br/>
       <div>
-                    <h1> Cheese </h1>
-                    <hr/>
-                </div>
-          @foreach (var cheese in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.CheeseEnum)))
-     {
-        <label class="col-sm-2" asp-for="Cheese">@cheese</label>
-        <input type="radio" asp-for="Cheese" value="@cheese"/>
-     }
+        <h1> Toppings </h1>
+        <hr/>
+      </div>
+      @foreach (var toppings in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.ToppingsEnum)))
+      {
+        <div class="columns">
+          <div class="column is-3">
+            <h4>@toppings</h4>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="none" name="@toppings" value="None">
+            <label for="none">None</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Normal" name="@toppings" value="Normal">
+            <label for="Normal">Normal</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Double" name="@toppings" value="Double">
+            <label for="Double">Double</label>
+          </div>
+        </div>
+      }
+
       <div>
-                    <h1> Sauces </h1>
-                    <hr/>
-                </div>
-          @foreach (var sauce in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.SauceEnum)))
-     {
-        <label class="col-sm-2" asp-for="Sauce">@sauce</label>
-        <input type="radio" asp-for="Sauce" value="@sauce"/>
-     }
-     
-     </div>
-
-         <button class="btn btn-sm btn-danger order-button float-right" type="submit" asp-for="MenuItem.Id" value="@Model.MenuItem.Id">Payment</button>
-
+        <h1> Cheese </h1>
+        <hr/>
+      </div>
+      @foreach (var cheese in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.CheeseEnum)))
+      {
+        <div class="columns">
+          <div class="column is-3">
+            <h4>@cheese</h4>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="none" name="@cheese" value="None">
+            <label for="none">None</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Normal" name="@cheese" value="Normal">
+            <label for="Normal">Normal</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Double" name="@cheese" value="Double">
+            <label for="Double">Double</label>
+          </div>
+        </div>
+      }
+      
+      <div>
+        <h1> Sauces </h1>
+        <hr/>
+      </div>
+      @foreach (var sauce in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.SauceEnum)))
+      {
+        <div class="columns">
+          <div class="column is-3">
+            <h4>@sauce</h4>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="none" name="@sauce" value="None">
+            <label for="none">None</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Normal" name="@sauce" value="Normal">
+            <label for="Normal">Normal</label><br>
+          </div>
+          <div class="column is-1">
+            <input type="radio" id="Double" name="@sauce" value="Double">
+            <label for="Double">Double</label>
+          </div>
+        </div>
+      } 
+    </div>
   </form>
-</div> 
+</div>
