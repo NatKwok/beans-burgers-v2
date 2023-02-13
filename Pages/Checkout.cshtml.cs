@@ -4,6 +4,7 @@ using BeansBurgers_v2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Azure.Storage.Blobs;
+using System.Text;
 
 namespace BeansBurgers_v2.Pages
 {
@@ -26,13 +27,28 @@ namespace BeansBurgers_v2.Pages
             }
             totalPrice *= 1.15;   
             dataString = string.Concat(dataString, "Total price = " + totalPrice);
-            System.IO.File.WriteAllText("../AppIIBeansBurgers_v2/Receipts/Order.txt", dataString);
+
+            //Set up the blob connection
             string connectionString = "DefaultEndpointsProtocol=https;AccountName=beansburgersblobs;AccountKey=aIWyiqsEk6SOUkU7+mTdMkTZtyMzVUuTYVnAyyFJYwhmpaWejxjC3nbQoDY+wkuCl1gmLTCC77zV+AStC1YVBw==;EndpointSuffix=core.windows.net";
             string storageContainer = "beansburgers";
+            BlobContainerClient container = new BlobContainerClient(connectionString, "order");
+            //Send string to blob
+            BlobClient blob = container.GetBlobClient("myString");
+            var content = Encoding.UTF8.GetBytes(dataString);
+            using(var ms = new MemoryStream(content))
+                blob.Upload(ms, overwrite: true);
+                    
+           /*
             BlobContainerClient azContainer = new BlobContainerClient(connectionString, storageContainer);
-            string fileName = Path.GetFileName("../AppIIBeansBurgers_v2/Receipts/Order.txt");
-            BlobClient blobClient = azContainer.GetBlobClient(fileName);
-            await blobClient.UploadAsync("../AppIIBeansBurgers_v2/Receipts/Order.txt", true);
+            BlobClient blobClient = azContainer.GetBlobClient(dataString);
+
+            //upload string?
+            var content = System.Text.Encoding.UTF8.GetBytes(dataString);
+            using(var ms = new MemoryStream(content))
+            await blobClient.UploadAsync(ms);
+
+            //System.IO.File.WriteAllText("../AppIIBeansBurgers_v2/Receipts/Order.txt", dataString);
+            //string fileName = Path.GetFileName("../AppIIBeansBurgers_v2/Receipts/Order.txt");*/
             return RedirectToPage("Menu");
         }
 
