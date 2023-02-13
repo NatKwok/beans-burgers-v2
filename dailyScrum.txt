@@ -1,0 +1,267 @@
+DAILY SCRUM - EVERY DAY AT 8:30AM (as soon as  you arrive)
+==========================================================
+Each member writes down answers to 3 questions in the following format:
+<< current date goes here >>
+1. What I have done / not done since last Scrum?
+2. What I plan to do from this scrum to next? (next 24 hours)
+3. Where do I need assistance? What do I need to figure out?
+
+======================================================================
+2023/01/31
+======================================================================
+Matthew
+--------
+Done:
+Not Done:
+To do:
+  - Create basic mockup and post screenshots
+  - Create database mockup and post screenshots
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+Not Done:
+To do:
+  - Research Tailwind for CSS
+Need assistance / figure things out
+
+Nathaniel
+----------
+Done:
+Not Done:
+To do:
+  - Update use case diagram & post screenshots
+Need assistance / figure things out
+
+
+======================================================================
+2023/02/01
+======================================================================
+Matthew
+--------
+Done:
+  - Create basic mockup and post screenshots
+  - Create database mockup and post screenshots
+Not Done:
+To do:
+  - Create the final version of the database based on today's plan
+  - Create the first version of the site and seed database with basic burger / ingredient data
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+ - Research Tailwind for CSS
+Not Done:
+To do:
+Need assistance / figure things out
+
+Nathaniel
+----------
+Done:
+  - Update use case diagram & post screenshots
+Not Done:
+To do:
+Need assistance / figure things out
+
+
+======================================================================
+2023/02/02
+======================================================================
+Matthew
+--------
+Done:
+Not Done:
+  - Create the final version of the database based on today's plan
+  - Create the first version of the site and seed database with basic burger / ingredient data
+To do:
+   - Plan out final version of the database & seed data
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+	found and edited custom images for all ingredients
+Not Done:
+To do:
+  - Find images for the website
+Need assistance / figure things out
+
+Nathaniel
+----------
+Done:
+  -Created Customize PAge
+  -Updated Scaffolding
+  -Get ingredients list from DB and display them
+Not Done:
+To do:
+  - Create site using scaffolding
+Need assistance / figure things out
+
+
+======================================================================
+2023/02/03
+======================================================================
+Matthew
+--------
+Done:
+  - Plan out final version of the database & seed data
+Not Done:
+To do:
+  - Menu Page -> Display all items in a grid and link to customize page
+Not Done:
+To do:
+   - Plan out final version of the database & seed data
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+Not Done:
+To do:
+  - Research Stripe API
+Need assistance / figure things out
+
+Nathaniel
+----------
+Done:
+  -Created Curstomize Page Layout
+  -Created Total Price Counter 
+  -Price Counter add or subtract
+Not Done:
+To do:
+  -Add/subtract each ingredient individually
+  -Do not allow ingredient counter to go below 0
+  -Create Ids on each ingredient
+Need assistance / figure things out
+
+======================================================================
+2023/02/04
+======================================================================
+Matthew
+--------
+Done:
+Not Done:
+To do:
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+Stripe Api for Checkout Page 
+Not Done:
+To do: 
+Need assistance / figure things out
+
+Nathaniel
+----------
+Done:
+  -Total Price Counter Adds and Subtracts
+  -Create ingredients table in DB to retrieve ingredients for customization
+Not Done:
+To do:
+Need assistance / figure things out
+
+
+======================================================================
+2023/02/05
+======================================================================
+Matthew
+--------
+Done:
+Not Done:
+To do:
+Finish menu page
+Finish cart
+Finish routing between menu and checkout
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+Not Done:
+To do: 
+Need assistance / figure things out
+
+Nathaniel
+----------
+Done: 
+  -removed initial prices of items
+  -Created new Server to solve other server issue
+Not Done:
+To do:
+  -Link Menu Items to the new database
+Need assistance / figure things out
+
+======================================================================
+2023/02/06
+======================================================================
+Matthew
+--------
+Done:
+Finish menu page
+Finish cart
+Finish routing between menu and checkout
+Not Done:
+To do:
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+Not Done:
+To do: 
+Need assistance / figure things out:
+Running into some issuess with the Stripe.checkout Api
+
+Nathaniel
+----------
+Done: 
+  -update packages
+  -create alert for ingredients
+Not Done:
+  -Get data from new database to show on Front-End
+To do:
+Need assistance / figure things out
+
+
+======================================================================
+2023/02/07
+======================================================================
+Matthew
+--------
+Done:
+	Finish menu page
+	Finish routing between menu and customize
+Not Done:
+	Finish cart
+To do:
+	Finish cart and route it to checkout
+	Clear localStorage on checkout
+	List out localStorage items in cart that persists across pages
+	Pass and attach PDF receipt to checkout confirmation page for download
+	Store PDF receipt in Azure blob
+Need assistance / figure things out
+
+Heindy
+-------
+Done:
+Not Done:
+To do: 
+Find images of celebrities for homepage
+Make a homepage layout with tailwind
+Write homepage text explaining that we're a luxury burger restaurant
+Need assistance / figure things out:
+Running into some issuess with the Stripe.checkout Api
+
+Nathaniel
+----------
+Done: 
+  -update packages
+  -create alert for ingredients
+Not Done:
+To do:
+Need assistance / figure things out
+  -Get data from new database to show on Front-End
+
