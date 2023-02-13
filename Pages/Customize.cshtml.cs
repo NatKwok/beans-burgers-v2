@@ -184,7 +184,6 @@ namespace BeansBurgers_v2.Pages
                     price = _db.MenuItems.ToList()[i].Price;
                 }
             }
-            Console.WriteLine(price);
             OrderItem item = new OrderItem() { CustomBurger = ItemName, Description = description, Quantity=qty, BurgerPrice = (float)price};
             _db.OrderItems.Update(item);
             _db.SaveChanges();
