@@ -20,7 +20,8 @@
     letter-spacing: 2px;
     color: white;
     text-shadow: 0px 0px 1px white;
-    background-image: linear-gradient(orange, rgb(225, 122, 20));
+    background-image: linear-gradient(transparent, transparent, transparent));
+    box-shadow: 0px 0px 1px 1px white;
     }
     a{
         text-decoration: none;
@@ -64,12 +65,12 @@
             }
         </ul>
 
-        <button class="btn btn-sm btn-danger order-button float-left" name="Checkout" type="submit" >Checkout</button>
+        <button class="btn btn-sm text-white order-button float-left" name="Checkout" type="submit" >Checkout</button>
 
     </form>
     <div>
 
-    <a asp-page="/Menu"><button class="btn btn-sm btn-danger order-button float-left">Back to Menu</button></a>
+    <a asp-page="/Menu"><button class="btn btn-sm text-white order-button float-left">Back to Menu</button></a>
 
     </div>
 
