@@ -1,0 +1,34 @@
+﻿@page
+@model BeansBurgers_v2.Pages.EmployeesModel
+@{
+}
+<div>
+    <p> Current Order </p>
+    <a asp-page="/Checkout"><button>Checkout</button></a>
+    <hr/>
+    <ul id="cart">
+        @foreach (var person in Model.Users)
+        {
+            <li>
+                <div class="columns">
+                    <div class="column" style="text-align: left">
+                        Name: @person.UserName
+                    </div>
+                    <div class="column" style="text-align: left">
+                        Phone: @person.PhoneNumber
+                    </div>
+                    <div class="column" style="text-align: left">
+                        Email: @person.Email
+                    </div>
+                    <div class="column" style="text-align: left">
+                        <a asp-page="/DeleteEmployee" asp-route-id="@person.Id">
+                                <button class="nope">
+                                    <i class="material-icons">clear</i>
+                                </button>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
