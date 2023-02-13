@@ -1,3 +1,79 @@
+@font-face {
+  font-family: "Kinta";
+  src: url(../fonts/kinta-webfont.woff2) format("woff2"),
+    url(../fonts/kinta-webfont.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Bodoni";
+  src: url(../fonts/bodoniflf-roman-webfont.woff2) format("woff2"),
+    url(../fonts/bodoniflf-roman-webfont.woff) format("woff");
+}
+
+.description {
+  font-family: Bodini;
+  font-size: 11px;
+}
+
+.product-title {
+  font-family: Bodini;
+  font-size: 14px;
+}
+
+.section-dish {
+  font-family: Kinta;
+  font-size: 48px;
+}
+
+.section-dish-small {
+  font-family: Kinta;
+  font-size: 36px;
+}
+
+.current-order {
+  font-family: Kinta;
+  font-size: 20px;
+}
+
+.current-order-items {
+  font-family: Kinta;
+  font-size: 16px;
+}
+
+.nav-font-size {
+  font-family: Kinta;
+  font-size: 18px;
+}
+
+.Main-Title {
+  font-family: Kinta;
+  font-size: 60px;
+}
+
+.Main-SubTitle {
+  font-family: Kinta;
+}
+
+.Main-Button {
+  font-family: Kinta;
+}
+
+.btn {
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-10px);
+}
+
+.nope {
+  transition: 0.3s;
+}
+
+.nope:hover {
+  transform: translateY(-10px);
+}
+
 html {
   font-size: 14px;
 }
@@ -8,7 +84,11 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -18,18 +98,75 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: rgb(66, 66, 66);
+  background: linear-gradient(
+    180deg,
+    rgba(59, 47, 38, 1) 0%,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(0, 0, 0, 1) 67%,
+    rgba(59, 47, 38, 1) 100%
+  );
 }
 
-#topnav{
-  background-image: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42));
-  border-bottom: 1px solid rgb(255, 184, 118);
+#topnav {
+  background-image: linear-gradient(rgb(59, 47, 38), rgb(49, 40, 32));
+  /*background-image: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42));*/
+  /*border-bottom: 1px solid rgb(255, 184, 118);*/
 }
 
-footer{
-  text-align: center; 
+footer {
+  text-align: center;
   height: 10px;
-  background-image: linear-gradient(rgb(42, 42, 42), rgb(42, 42, 42));
+  background-image: linear-gradient(rgb(49, 40, 32), rgb(59, 47, 38));
   border-top: 1px solid rgb(255, 184, 118);
   color: rgb(251, 137, 23);
+}
+
+/* animation untilities */
+.animate {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animate--infinite {
+  animation-iteration-count: infinite;
+}
+
+animate--fast {
+  animation-duration: 0.6s;
+}
+
+animate--slow {
+  animation-duration: 3s;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-300px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes opa {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.slideInLeft {
+  animation-name: slideInLeft;
+  animation-timing-function: ease-in;
+}
+
+.opa {
+  animation-name: opa;
+  animation-timing-function: ease-in;
 }
