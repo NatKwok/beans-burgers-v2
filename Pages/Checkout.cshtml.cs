@@ -3,6 +3,7 @@ using BeansBurgers_v2.Data;
 using BeansBurgers_v2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Azure.Storage.Blobs;
 
 namespace BeansBurgers_v2.Pages
 {
@@ -14,13 +15,24 @@ namespace BeansBurgers_v2.Pages
         public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>(); 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); 
         public OrderItem OrderItem { get; set;}
-        public async Task OnGetAsync(){
-            Console.WriteLine("AsyncFunction");
+
+        public async Task<IActionResult> OnGetAsync(){
             OrderItems = await db.OrderItems.ToListAsync();
-            //double price = 0;
-
-
-            // return RedirectToPage("Menu");
+            string dataString = "";
+            double totalPrice = 0;
+            for(int i = 0; i < db.OrderItems.ToList().Count(); i++) {
+                dataString = string.Concat(dataString, db.OrderItems.ToList()[i].CustomBurger + " = " + db.OrderItems.ToList()[i].BurgerPrice + " x " + db.OrderItems.ToList()[i].Quantity + "\n");
+                totalPrice += (db.OrderItems.ToList()[i].BurgerPrice * db.OrderItems.ToList()[i].Quantity);
+            }
+            totalPrice *= 1.15;   
+            System.IO.File.WriteAllText("../Receipts/Order.txt", dataString);
+            string connectionString = "DefaultEndpointsProtocol=https;AccountName=beansburgersblobs;AccountKey=aIWyiqsEk6SOUkU7+mTdMkTZtyMzVUuTYVnAyyFJYwhmpaWejxjC3nbQoDY+wkuCl1gmLTCC77zV+AStC1YVBw==;EndpointSuffix=core.windows.net";
+            string storageContainer = "beansburgersblobs";
+            BlobContainerClient azContainer = new BlobContainerClient(connectionString, storageContainer);
+            string fileName = Path.GetFileName("../Receipts/Order.txt");
+            BlobClient blobClient = azContainer.GetBlobClient(fileName);
+            await blobClient.UploadAsync("../Receipts/Order.txt", true);
+            return RedirectToPage("Menu");
         }
 
         public async Task<IActionResult> OnPostAsync() {
@@ -33,9 +45,7 @@ namespace BeansBurgers_v2.Pages
                         <br>Description: {OrderItem.Description}
                             </p>";
             
-            for(int i = 0; i < db.OrderItems.ToList().Count(); i++) {
-                //For each OrderItem, write the var body
-            }
+           
             return RedirectToPage("Index");
         }
     }
