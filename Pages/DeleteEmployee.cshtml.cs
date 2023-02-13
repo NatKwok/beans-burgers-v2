@@ -16,8 +16,13 @@ namespace BeansBurgers_v2.Pages
         public string Id { get; set; }
 
         public async Task<IActionResult> OnGetAsync(){
-            IdentityUser person = new IdentityUser() { Id = Id };
-            db.Users.Remove(person);
+            Users = db.Users.ToList();
+            foreach(IdentityUser user in Users){
+                Console.WriteLine(user.Id);
+                if(user.Id == Id){
+                    db.Users.Remove(user);
+                }
+            }
             db.SaveChanges();
             return RedirectToPage("Employees");
         }
