@@ -4,7 +4,6 @@ using BeansBurgers_v2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace BeansBurgers_v2.Pages
 {
     public class MenuModel : PageModel

@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen();
 
 // Add Stripe Infrastructure
 builder.Services.AddStripeInfrastructure(builder.Configuration);
-
+builder.Services.AddMvc().AddNewtonsoftJson();
 
 
 
@@ -33,6 +33,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    StripeConfiguration.ApiKey = "sk_test_51Mak6mFaBSwa0ZYTQOOnUsUkqgEpkp8s27xlwRNx95nEpZXUPWW9ZcnNNDCdBULpO0fWlUUSPxdosQtdYRhhQxfu00j0ZXI8bX";
     app.UseMigrationsEndPoint();
     app.UseSwagger();
     app.UseSwaggerUI();
