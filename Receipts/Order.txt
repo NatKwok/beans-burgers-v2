@@ -1,4 +1,4 @@
 Fries = 5.5 x 1
-Poutine = 7.5 x 1
-La Volaille = 24.5 x 1
-Total price = 43.125
+La Basique = 29.25 x 1
+Cheese Sticks = 7 x 1
+Total price = 48.012499999999996

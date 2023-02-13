@@ -45,6 +45,7 @@
 </style>
 <div class="columns">
     <div class= "column is-3">
+        <a asp-page="/Checkout"><button>Checkout</button></a>
         <p class="current-order"> Current Order </p>
         <hr/>
         <ul id="cart">
@@ -102,7 +103,7 @@
                         <a title="Order @product.Name">
                             <div class="productInfo">
                                 
-                                <img class="product-image img-fluid img-thumbnail" src="~/images/@product.ImageName" alt="Image of @product.Name" />
+                                <img class="product-image img-fluid img-thumbnail" src="/.images/@product.ImageName" alt="Image of @product.Name" />
                                 <p class="product-title">@product.Name</p> 
                                 <p class="description">@product.Description</p>
                             </div>
