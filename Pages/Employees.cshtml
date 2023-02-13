@@ -17,7 +17,13 @@
                     <div class="column" style="text-align: left">
                         Email: @person.Email
                     </div>
-                    
+                    <div class="column" style="text-align: left">
+                            <a asp-page="/EditEmployee" asp-route-id="@person.Id">
+                                    <button class="nope">
+                                        <i class="material-icons">create</i>
+                                    </button>
+                            </a>
+                        </div>
                     <div class="column" style="text-align: left">
                         <a asp-page="/DeleteEmployee" asp-route-id="@person.Id">
                                 <button class="nope">
