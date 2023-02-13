@@ -14,7 +14,6 @@ namespace BeansBurgers_v2.Pages
         public async Task<IActionResult> OnGetAsync(){
             double price = 0;
 
-
             return RedirectToPage("Menu");
         }
     }

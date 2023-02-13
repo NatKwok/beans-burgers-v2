@@ -1,4 +1,21 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var mainStuff = document.getElementById("mainStuff");
 
-// Write your JavaScript code.
+var heights = window.innerHeight;
+var middle = window.innerHeight / 4;
+document.getElementById("mainStuff").style.paddingTop = middle + "px";
+
+function resize()
+{
+    document.getElementById("mainStuff").style.height = heights -1 + "px";
+}
+
+resize();
+window.onresize = function() {
+    resize();
+};
+
+window.onscroll = function(){
+    resize();
+};
+
+
