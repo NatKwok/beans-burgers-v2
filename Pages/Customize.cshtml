@@ -3,6 +3,41 @@
 @{ ViewData["Title"] = "Customize"; 
 
 } 
+<style>
+    ul {
+        list-style-type: none;
+    }
+    h1, a, p, h3, hr, label {
+        color: white;
+    }
+    button{
+    padding: 1.5% 9% 1.5% 9%; 
+    border-radius: 20px;
+    border: none;
+    font-size: 200%;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 0px 0px 1px white;
+    background-image: linear-gradient(orange, rgb(225, 122, 20));
+    }
+    a{
+        text-decoration: none;
+    }
+    .nope{
+        background-image: none;
+        background-color: transparent;
+        border: none;
+        color: red;
+    }
+    
+    .col-sm-2{
+        background-image: radial-gradient(transparent, transparent, rgb(53, 53, 53));
+        margin: 5px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 1px 1px orange;
+    }
+</style>
 
 <div>
  @* <h1>Customize your Burger: @Model.MenuItem.Name</h1> *@
@@ -34,7 +69,7 @@
 
      @foreach (var buns in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.BunsEnum)))
      {
-        <label asp-for="Buns">@buns</label>
+        <label class="col-sm-2" asp-for="Buns">@buns</label>
         <input type="radio" asp-for="Buns" value="@buns"/>
        
      }
@@ -44,7 +79,7 @@
                 </div>
           @foreach (var patties in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.PattiesEnum)))
      {
-        <label asp-for="Patties">@patties</label>
+        <label class="col-sm-2" asp-for="Patties">@patties</label>
         <input type="radio" asp-for="Patties" value="@patties"/>
      }
       <div>
@@ -54,7 +89,7 @@
 
           @foreach (var toppings in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.ToppingsEnum)))
      {
-        <label asp-for="Toppings">@toppings</label>
+        <label class="col-sm-2" asp-for="Toppings">@toppings</label>
         <input type="radio" asp-for="Toppings" value="@toppings"/>
      }
       <div>
@@ -63,7 +98,7 @@
                 </div>
           @foreach (var cheese in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.CheeseEnum)))
      {
-        <label asp-for="Cheese">@cheese</label>
+        <label class="col-sm-2" asp-for="Cheese">@cheese</label>
         <input type="radio" asp-for="Cheese" value="@cheese"/>
      }
       <div>
@@ -72,31 +107,13 @@
                 </div>
           @foreach (var sauce in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.SauceEnum)))
      {
-        <label asp-for="Sauce">@sauce</label>
+        <label class="col-sm-2" asp-for="Sauce">@sauce</label>
         <input type="radio" asp-for="Sauce" value="@sauce"/>
      }
      
      </div>
 
-         <button class="btn btn-sm btn-danger order-button float-right" >Payment</button>
+         <button class="btn btn-sm btn-danger order-button float-right" type="submit" asp-for="MenuItem.Id" value="@Model.MenuItem.Id">Payment</button>
 
   </form>
 </div> 
-
-@section scripts{ 
-    
-    <partial name="_ValidationScriptsPartial"></partial>
-<script type="text/javascript">
-  /* Add/Subtract ingredients */
-  @* $('.minus, .plus').click(function(e) {
-    e.preventDefault();
-    var $input = $(this).siblings('.value');
-    var val = parseInt($input.val(), 10);
-    if (val >= 0) {
-      $input.val(val + ($(this).hasClass('minus') ? -1 : 1));
-    } else {
-      $input.val(val + 1);
-      alert("You have no more of this ingredient");
-    }
-  }); *@
-</script> }
