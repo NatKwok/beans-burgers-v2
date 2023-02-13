@@ -1,4 +1,2 @@
-Poutine = 7.5 x 1
-Fries = 5.5 x 1
-La Piscicole = 22.5 x 1
-Total price = 40.824999999999996
+La Basique = 29.25 x 1
+Total price = 33.637499999999996
