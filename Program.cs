@@ -66,13 +66,16 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     StripeConfiguration.ApiKey = "sk_test_51Mak6mFaBSwa0ZYTQOOnUsUkqgEpkp8s27xlwRNx95nEpZXUPWW9ZcnNNDCdBULpO0fWlUUSPxdosQtdYRhhQxfu00j0ZXI8bX";
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 else
 {
-    app.UseExceptionHandler("/Error");
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
+    // app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }

@@ -1,2 +1,4 @@
-La Basique = 29.25 x 1
-Total price = 33.637499999999996
+Fries = 5.5 x 1
+Poutine = 7.5 x 1
+La Volaille = 24.5 x 1
+Total price = 43.125
