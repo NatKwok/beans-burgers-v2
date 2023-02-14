@@ -15,13 +15,20 @@ namespace BeansBurgers_v2.Pages
         public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>(); 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); 
         public MenuItem MenuItem {get; set;}
+        public int totalItems {get; set;} = 0;
+        public double totalPrice {get; set;} =0;
 
+               public double totalTax {get; set;} = 0;
+               public double grandTotal {get; set;} = 0;
         
         public async Task OnGetAsync(){
+
             Ingredients = await db.Ingredients.ToListAsync();
             MenuItems = await db.MenuItems.ToListAsync();
             OrderItems = await db.OrderItems.ToListAsync();
             MenuItem = await db.MenuItems.FindAsync(Id);
+            CalcTotals();
+
         }
 
         public async Task<IActionResult> OnPostAsync(){
@@ -34,10 +41,30 @@ namespace BeansBurgers_v2.Pages
             db.OrderItems.Add(cartItem);
             db.SaveChanges();
 
+            Console.WriteLine(MenuItems.Count);
+        
             Ingredients = await db.Ingredients.ToListAsync();
             MenuItems = await db.MenuItems.ToListAsync();
             OrderItems = await db.OrderItems.ToListAsync();
+            CalcTotals();
+
             return Page();
+        }
+
+        public void CalcTotals() {
+            if (OrderItems.Count > 0) {
+
+                double taxRate = 0.15;
+                foreach (var item in OrderItems)
+                {
+                  totalItems += item.Quantity;  
+                  totalPrice += item.BurgerPrice;  
+
+                }
+
+                totalTax = totalPrice * taxRate;
+                grandTotal = totalTax + totalPrice;
+            }
         }
     }
 
