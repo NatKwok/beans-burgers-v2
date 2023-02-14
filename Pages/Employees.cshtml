@@ -2,35 +2,39 @@
 @model BeansBurgers_v2.Pages.EmployeesModel
 @{
 }
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 <div>
     <ul id="cart">
         @foreach (var person in Model.Users)
         {
             <li style="color: white;">
                 <div class="columns">
-                    <div class="column" style="text-align: left">
+                    <div class="column is-3" style="text-align: left">
                         Name: @person.UserName
                     </div>
-                    <div class="column" style="text-align: left">
+                    <div class="column is-3" style="text-align: left">
                         Phone: @person.PhoneNumber
                     </div>
-                    <div class="column" style="text-align: left">
+                    <div class="column is-3" style="text-align: left">
                         Email: @person.Email
                     </div>
-                    <div class="column" style="text-align: left">
-                            <a asp-page="/EditEmployee" asp-route-id="@person.Id">
-                                    <button class="nope">
-                                        <i class="material-icons">create</i>
-                                    </button>
-                            </a>
-                        </div>
-                    <div class="column" style="text-align: left">
-                        <a asp-page="/DeleteEmployee" asp-route-id="@person.Id">
-                                <button class="nope">
-                                    <i class="material-icons">clear</i>
-                                </button>
+                    <div class="column is-1" style="text-align: left">
+                        <a asp-page="/EditEmployee" asp-route-id="@person.Id">
+                            <button class="nope">
+                                <i class="material-icons">create</i>
+                            </button>
                         </a>
                     </div>
+                    @if(person.UserName != User.Identity?.Name!){
+                    <div class="column is-1" style="text-align: left">
+                        <a asp-page="/DeleteEmployee" asp-route-id="@person.Id">
+                            <button class="nope">
+                                <i class="material-icons">clear</i>
+                            </button>
+                        </a>
+                    </div>
+                    }
                 </div>
             </li>
         }
