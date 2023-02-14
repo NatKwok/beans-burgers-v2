@@ -54,18 +54,25 @@
 
 <div>
   <form method="post" asp-asp-page="/Customize"> 
-    <input class="userInput" type="number" value="1" name="Quantity">
+    <input asp-for="OrderItem.Quantity" class="userInput" type="number"/>
+    @* <input asp-for="OrderItem.BurgerPrice" class="userInput" type="number"/> *@
+    <p>@Model.OrderItem.MenuItem.Name</p>
+    <p>@Model.OrderItem.BurgerPrice</p>
     <button class="btn text-white current-order" type="submit" name="Accept" value="">
       Complete Customization
     </button>
-    <input type="hidden" asp-for="MenuItem.Id"/>
+    <input type="hidden" asp-for="OrderItem.Id"/>
+    <input type="hidden" asp-for="ItemId"/>
+    <input type="hidden" asp-for="OrderItem.BurgerPrice"/>
+    <input type="hidden" asp-for="OrderItem.MenuItem.Name"/>
+   
     <div id="productsWrapper" class="row">     
       <div>
         <h1 class="section-dish-small"> Buns </h1>
         <hr/>
       </div>
       <div>
-        <select asp-for="Buns" asp-items="@Html.GetEnumSelectList<BunsEnum>()"></select>
+        <select asp-for="OrderItem.Bun" asp-items="@Html.GetEnumSelectList<BunsEnum>()"></select>
       </div>
       @*
       @foreach (var buns in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.BunsEnum)))
@@ -85,7 +92,7 @@
         <hr/>
       </div>
       <div>
-        <select asp-for="Patties" asp-items="@Html.GetEnumSelectList<PattiesEnum>()"></select>
+        <select asp-for="OrderItem.Pattie" asp-items="@Html.GetEnumSelectList<PattiesEnum>()"></select>
       </div>
       @*
       @foreach (var patties in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.PattiesEnum)))
@@ -106,7 +113,7 @@
         <hr/>
       </div>
       <div>
-        <select asp-for="Toppings" asp-items="@Html.GetEnumSelectList<ToppingsEnum>()"></select>
+        <select asp-for="OrderItem.Topping" asp-items="@Html.GetEnumSelectList<ToppingsEnum>()"></select>
       </div>
       @*
       @foreach (var toppings in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.ToppingsEnum)))
@@ -126,7 +133,7 @@
         <hr/>
       </div>
       <div>
-        <select asp-for="Cheese" asp-items="@Html.GetEnumSelectList<CheeseEnum>()"></select>
+        <select asp-for="OrderItem.Cheese" asp-items="@Html.GetEnumSelectList<CheeseEnum>()"></select>
       </div>
       
       @* @foreach (var cheese in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.CheeseEnum)))
@@ -146,7 +153,7 @@
         <hr/>
       </div>
       <div>
-        <select asp-for="Sauce" asp-items="@Html.GetEnumSelectList<SauceEnum>()"></select>
+        <select asp-for="OrderItem.Sauce" asp-items="@Html.GetEnumSelectList<SauceEnum>()"></select>
       </div>
       @* @foreach (var sauce in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.SauceEnum)))
       {

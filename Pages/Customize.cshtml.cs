@@ -12,47 +12,78 @@ namespace BeansBurgers_v2.Pages
         // public CustomizeModel(ApplicationDbContext db) => this.db = db;
 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-        // public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>();  
-        public OrderItem OrderItem {get; set;}
+        // public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>(); 
+        [BindProperty]
+        public OrderItem OrderItem { get; set; }
 
-        [BindProperty]
-        public BunsEnum Buns {get; set;}
-        [BindProperty]
-        public PattiesEnum Patties {get; set;}
-        [BindProperty]
-        public CheeseEnum Cheese {get; set;}
-        [BindProperty]
-        public SauceEnum Sauce {get; set;}
+        // [BindProperty]
+        // public BunsEnum Buns {get; set;}
+        // [BindProperty]
+        // public PattiesEnum Patties {get; set;}
+        // [BindProperty]
+        // public CheeseEnum Cheese {get; set;}
+        // [BindProperty]
+        // public SauceEnum Sauce {get; set;}
 
-        [BindProperty]
-        public ToppingsEnum Toppings {get; set;}
+        // [BindProperty]
+        // public ToppingsEnum Toppings {get; set;}
 
-        [BindProperty(SupportsGet =true)]
+        [BindProperty(SupportsGet = true)]
         public string Id { get; set; }
 
+        [BindProperty]
         public int ItemId { get; set; }
         public string ItemName { get; set; }
-        
 
-        public CustomizeModel(ApplicationDbContext db)  
-        {  
-            _db = db;  
+
+        public CustomizeModel(ApplicationDbContext db)
+        {
+            _db = db;
         }
-        
-        public async Task OnGetAsync(int? id) {
+
+        public async Task OnGetAsync(int? id)
+        {
 
             OrderItems = await _db.OrderItems.ToListAsync();
-            OrderItem = await _db.OrderItems.Where(i => i.Id == id).FirstOrDefaultAsync();
+            OrderItem = await _db.OrderItems.Where(i => i.Id == id).Include(oi => oi.MenuItem).FirstOrDefaultAsync();
+            Console.WriteLine("Pepsi_______________" + OrderItem.MenuItem.Name);
+            ItemName = OrderItem.MenuItem.Name;
+            ItemId = OrderItem.MenuItem.Id;
         }
 
-        public async Task<IActionResult> OnPostAsync() {
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            Console.WriteLine("\\\\ItemID: \\\\\\" + ItemId);
+            //OrderItems = await _db.OrderItems.ToListAsync();
+            //OrderItem OrderItemOld = await _db.OrderItems.Where(i => i.Id == id).Include(oi => oi.MenuItem).FirstOrDefaultAsync();
+            // _db.Entry(OrderItemOld).State = EntityState.Detached;
+            // OrderItem.MenuItem = OrderItemOld.MenuItem;
+            // Console.WriteLine(OrderItem.MenuItem.Id);
+            MenuItem mi = _db.MenuItems.Where(i => i.Id == ItemId).FirstOrDefault();
+            if (mi != null)
+            {
+                Console.WriteLine("\\\\\\\\MenuItem:\\\\\\\\\\ " + mi.Name);
+            }
+            else
+            {
+                return NotFound();
+            }
+            OrderItem.MenuItem = mi;
+
+
+            _db.OrderItems.Update(OrderItem);
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Menu");
+            //return RedirectToPage("Delete", new { id = OrderItem.Id });
+            return Page();
 
             // string description = "";
             // string buns = Request.Form["buns"];
             // if(buns != null){
             //     description = string.Concat(description, buns + " bun, ");
             // }
-            
+
             // string Angus = Request.Form["Angus"];
             // if(Angus != null){
             //     description = string.Concat(description, Angus + " angus beef, ");
@@ -178,31 +209,30 @@ namespace BeansBurgers_v2.Pages
             //     description = string.Concat(description, Guacamole + " Guacamole, ");
             // }
 
-            Console.WriteLine((int)Buns);
-            Console.WriteLine((int)Patties);
-            Console.WriteLine((int)Toppings);
-            Console.WriteLine((int)Cheese);
-            Console.WriteLine((int)Sauce);
-            
-            int qty = Int32.Parse(Request.Form["Quantity"]);
-            
-            int separatorIndex = Id.IndexOf(',');
-            ItemId = Int32.Parse(Id.Substring(0, separatorIndex));
-            ItemName = Id.Substring(separatorIndex + 1);
-            MenuItem add;
-            double price = 0;
-            for(int i = 0; i < _db.MenuItems.ToList().Count(); i++){
-                if(_db.MenuItems.ToList()[i].Name == ItemName){
-                    add = _db.MenuItems.ToList()[i];
-                    price = _db.MenuItems.ToList()[i].Price;
-                }
-            }
-            OrderItem item = new OrderItem() { CustomBurger = ItemName, Quantity=qty, BurgerPrice = (float)price, Buns = (Models.BunsEnum)Buns, Patties =};
-            _db.OrderItems.Update(item);
-            _db.SaveChanges();
 
-            return RedirectToPage("Delete", new {id = ItemId});
-            return Page();
+
+            // int qty = Int32.Parse(Request.Form["Quantity"]);
+
+            // int separatorIndex = Id.IndexOf(',');
+            // ItemId = Int32.Parse(Id.Substring(0, separatorIndex));
+            // ItemName = Id.Substring(separatorIndex + 1);
+            // MenuItem add;
+            // double price = 0;
+            // for (int i = 0; i < _db.MenuItems.ToList().Count(); i++)
+            // {
+            //     if (_db.MenuItems.ToList()[i].Name == ItemName)
+            //     {
+            //         add = _db.MenuItems.ToList()[i];
+            //         price = _db.MenuItems.ToList()[i].Price;
+            //     }
+            // }
+            // OrderItem item = new OrderItem() { CustomBurger = ItemName, Quantity = qty, BurgerPrice = (float)price, OrderItem = OrderItem };
+            // OrderItem.CustomBurger = ItemName;
+            // OrderItem.Quantity = qty;
+            // OrderItem.BurgerPrice = (float)price;
+
+
+
         }
 
     }

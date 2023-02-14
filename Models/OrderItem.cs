@@ -1,23 +1,26 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
-namespace BeansBurgers_v2.Models {
+namespace BeansBurgers_v2.Models
+{
 
-    public class OrderItem {
+    public class OrderItem
+    {
 
         [Key]
-        public int Id {get; set;}
+        public int Id { get; set; }
         //public string Product {get; set;}
-        public MenuItem MenuItem {get; set;} // NULL of custom burger is used
+        public MenuItem MenuItem { get; set; } // NULL of custom burger is used
 
-        public string CustomBurger {get; set;}
-        public float BurgerPrice {get; set;}
-        public int Quantity {get; set;}
-        public string Description {get; set;}
-        public BunsEnum Buns { get; set; }
-        public PattiesEnum Patties { get; set; }
-        public ToppingsEnum Toppings { get; set; }
-        public SauceEnum Sauces { get; set; }
-        
+        public string CustomBurger { get; set; }
+        public float BurgerPrice { get; set; }
+        public int Quantity { get; set; }
+        public string Description { get; set; }
+        public BunsEnum Bun { get; set; }
+        public PattiesEnum Pattie { get; set; }
+        public ToppingsEnum Topping { get; set; }
+        public SauceEnum Sauce { get; set; }
+        public CheeseEnum Cheese { get; set; }
+
     }
 }
