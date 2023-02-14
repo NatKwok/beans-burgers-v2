@@ -51,21 +51,17 @@
             {
                 <li>
                     <div class="columns">
-
                         <div class="column" style="text-align: left">
                             @product.CustomBurger
                         </div>
                         <div class="column" style="text-align: left">
-                             $@string.Format("{0:0.00}", @product.BurgerPrice)
+                            $@string.Format("{0:0.00}", @product.BurgerPrice)
                         </div>
                         <div class="column" style="text-align: left">
                             @product.Quantity
                         </div>
-
-                        
                     </div>
                 </li>
-                        
             }
         </ul>
         <p>Total Items: @Model.OrderDetails.totalItems</p>

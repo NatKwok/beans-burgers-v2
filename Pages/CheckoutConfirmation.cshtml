@@ -43,25 +43,24 @@
 </style>
 <h1> Thanks for checking out!</h1>
 <h2>Order number @Model.OrderDetails.Id</h2>
- @foreach (var product in Model.OrderDetails.OrderItemsList)
+<ul>
+@foreach (var product in Model.OrderItems)
 {
     <li>
         <div class="columns">
-
             <div class="column" style="text-align: left">
                 @product.CustomBurger
             </div>
             <div class="column" style="text-align: left">
-                    $@string.Format("{0:0.00}", @product.BurgerPrice)
+                $@string.Format("{0:0.00}", @product.BurgerPrice)
             </div>
             <div class="column" style="text-align: left">
                 @product.Quantity
             </div>
-
-            
         </div>
     </li>   
 }
+</ul>
 <p>Total Items: @Model.OrderDetails.totalItems</p>
 <p>Total Price:$@string.Format("{0:0.00}", @Model.OrderDetails.totalPrice)</p>
 
