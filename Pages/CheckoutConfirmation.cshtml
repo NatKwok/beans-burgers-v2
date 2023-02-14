@@ -1,7 +1,6 @@
 ﻿@page
-@model BeansBurgers_v2.Pages.CheckoutModel
+@model BeansBurgers_v2.Pages.CheckoutConfirmationModel
 @{
-    ViewData["Title"] = "Checkout";
 }
 <style>
     ul {
@@ -42,12 +41,9 @@
         box-shadow: 0px 0px 1px 1px orange;
     }
 </style>
-<div class="column is-9">
-    <form method="post">
-        <h1>Checkout</h1>
-        <h2>Finalize your Order here</h2>
-        <ul id="cart">
-            @foreach (var product in Model.OrderItems)
+<h1> Thanks for checking out!</h1>
+<h2>Order number @Model.OrderDetails.Id</h2>
+ @foreach (var product in Model.OrderDetails.OrderItemsList)
             {
                 <li>
                     <div class="columns">
@@ -64,22 +60,11 @@
 
                         
                     </div>
-                </li>
-                        
+                </li>   
             }
-        </ul>
-        <p>Total Items: @Model.OrderDetails.totalItems</p>
-        <p>Total Price: $@Model.OrderDetails.totalPrice</p>
-        <p>Total Tax: $@Model.OrderDetails.totalTax</p>
-        <p>Grand Total: $@Model.OrderDetails.grandTotal</p>
-
-        <button class="btn btn-sm text-white order-button float-left" name="Checkout" type="submit" >Place Order</button>
-
-    </form>
-    <div>
-
-    <a asp-page="/Menu"><button class="btn btn-sm text-white order-button float-left">Back to Menu</button></a>
-
-    </div>
-
-</div>
+<p>Total Items: @Model.OrderDetails.totalItems</p>
+<p>Total Price: $@Model.OrderDetails.totalPrice</p>
+<p>Total Tax: $@Model.OrderDetails.totalTax</p>
+<p>Grand Total: $@Model.OrderDetails.grandTotal</p>
+<a asp-page="/Index"><button class="btn btn-sm text-white order-button float-left">Home</button></a>
+<a asp-page="/Menu"><button class="btn btn-sm text-white order-button float-left">Back to Menu</button></a>

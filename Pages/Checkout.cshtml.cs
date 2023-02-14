@@ -16,54 +16,78 @@ namespace BeansBurgers_v2.Pages
         public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>(); 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); 
         public OrderItem OrderItem { get; set;}
+        public OrderDetails OrderDetails {get; set;} = new OrderDetails();
+        public int totalItems {get; set;} = 0;
+        public double totalPrice {get; set;} =0;
+        public double totalTax {get; set;} = 0;
+        public double grandTotal {get; set;} = 0;
 
         public async Task<IActionResult> OnGetAsync(){
             OrderItems = await db.OrderItems.ToListAsync();
-            string dataString = "";
-            double totalPrice = 0;
-            for(int i = 0; i < db.OrderItems.ToList().Count(); i++) {
-                dataString = string.Concat(dataString, db.OrderItems.ToList()[i].CustomBurger + " = " + db.OrderItems.ToList()[i].BurgerPrice + " x " + db.OrderItems.ToList()[i].Quantity + "\n");
-                totalPrice += (db.OrderItems.ToList()[i].BurgerPrice * db.OrderItems.ToList()[i].Quantity);
-            }
-            totalPrice *= 1.15;   
-            dataString = string.Concat(dataString, "Total price = " + totalPrice);
+            
+            CalcTotals();
+            OrderDetails.OrderItemsList = OrderItems;
+            OrderDetails.totalItems = totalItems;
+            OrderDetails.totalPrice = totalPrice;
+            OrderDetails.totalTax = totalTax;
+            OrderDetails.grandTotal = grandTotal;
 
+            
+           return Page(); 
+        }
+
+        public async Task<IActionResult> OnPostAsync() {
+        //Send OrderItems to database
+            OrderItems = await db.OrderItems.ToListAsync();
+            CalcTotals();
+            OrderDetails.OrderItemsList = OrderItems;
+            OrderDetails.totalItems = totalItems;
+            OrderDetails.totalPrice = totalPrice;
+            OrderDetails.totalTax = totalTax;
+            OrderDetails.grandTotal = grandTotal;
+
+            db.OrdersDetails.Add(OrderDetails);
+            db.SaveChanges();
+            Console.WriteLine(OrderDetails.Id);
+
+        //Send Receipt String to Blob
+            string dataString = OrderDetails.ToString();
             //Set up the blob connection
             string connectionString = "DefaultEndpointsProtocol=https;AccountName=beansburgersblobs;AccountKey=aIWyiqsEk6SOUkU7+mTdMkTZtyMzVUuTYVnAyyFJYwhmpaWejxjC3nbQoDY+wkuCl1gmLTCC77zV+AStC1YVBw==;EndpointSuffix=core.windows.net";
             string storageContainer = "beansburgers";
             BlobContainerClient container = new BlobContainerClient(connectionString, "order");
             //Send string to blob
-            BlobClient blob = container.GetBlobClient("myString");
+            BlobClient blob = container.GetBlobClient(dataString);
             var content = Encoding.UTF8.GetBytes(dataString);
             using(var ms = new MemoryStream(content))
                 blob.Upload(ms, overwrite: true);
-                    
-           /*
-            BlobContainerClient azContainer = new BlobContainerClient(connectionString, storageContainer);
-            BlobClient blobClient = azContainer.GetBlobClient(dataString);
-
-            //upload string?
-            var content = System.Text.Encoding.UTF8.GetBytes(dataString);
-            using(var ms = new MemoryStream(content))
-            await blobClient.UploadAsync(ms);
-
-            //System.IO.File.WriteAllText("../AppIIBeansBurgers_v2/Receipts/Order.txt", dataString);
-            //string fileName = Path.GetFileName("../AppIIBeansBurgers_v2/Receipts/Order.txt");*/
-            return RedirectToPage("Menu");
+            
+            /*double totalPrice = 0;
+            for(int i = 0; i < db.OrderItems.ToList().Count(); i++) {
+                dataString = string.Concat(dataString, db.OrderItems.ToList()[i].CustomBurger + " = " + db.OrderItems.ToList()[i].BurgerPrice + " x " + db.OrderItems.ToList()[i].Quantity + "\n");
+                totalPrice += (db.OrderItems.ToList()[i].BurgerPrice * db.OrderItems.ToList()[i].Quantity);
+            }
+            double totalTax = totalPrice * 0.15;
+            totalPrice *= 1.15;   
+            dataString = string.Concat(dataString, "Total tax = " + totalTax + "\n");
+            dataString = string.Concat(dataString, "Total price = " + totalPrice);*/       
+            return RedirectToPage("CheckoutConfirmation", new{id = OrderDetails.Id} );
         }
 
-        public async Task<IActionResult> OnPostAsync() {
+        public void CalcTotals() {
+            if (OrderItems.Count > 0) {
 
-            OrderItem = await db.OrderItems.FindAsync(Id);
+                double taxRate = 0.15;
+                foreach (var item in OrderItems)
+                {
+                  totalItems += item.Quantity;  
+                  totalPrice += item.BurgerPrice * item.Quantity;  
 
-            var body = $@"<p>Item Name: {OrderItem.CustomBurger} 
-                        <br>Price: ${OrderItem.BurgerPrice}
-                        <br>Quantity: {OrderItem.Quantity} 
-                        <br>Description: {OrderItem.Description}
-                            </p>";
-            
-           
-            return RedirectToPage("Index");
+                }
+
+                totalTax = totalPrice * taxRate;
+                grandTotal = totalTax + totalPrice;
+            }
         }
     }
 }
