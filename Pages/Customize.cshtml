@@ -74,18 +74,7 @@
       <div>
         <select asp-for="OrderItem.Bun" asp-items="@Html.GetEnumSelectList<BunsEnum>()"></select>
       </div>
-      @*
-      @foreach (var buns in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.BunsEnum)))
-      {
-        <div class="columns">
-          <div class="column is-3">
-            <label class="current-order-items" asp-for="Buns">@buns</label>
-          </div>
-          <div class="column is-1">
-            <input type="radio" asp-for="Buns" name="@buns" value="@buns"/>
-          </div>
-        </div>
-      }*@
+      
       
       <div>
         <h1 class="section-dish-small"> Patties </h1>
@@ -94,20 +83,7 @@
       <div>
         <select asp-for="OrderItem.Pattie" asp-items="@Html.GetEnumSelectList<PattiesEnum>()"></select>
       </div>
-      @*
-      @foreach (var patties in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.PattiesEnum)))
-      {
-        <div class="columns">
-          <div class="column is-3">
-            <label class="current-order-items" asp-for="Patties">@patties</label>
-          </div>
-          <div class="column is-1">
-            <input type="radio" asp-for="Patties" name="@patties" value="@patties"/>
-          </div>
-        </div>
-      }
-      <br/>
-      <br/>*@
+     
       <div>
         <h1 class="section-dish-small"> Toppings </h1>
         <hr/>
@@ -115,19 +91,7 @@
       <div>
         <select asp-for="OrderItem.Topping" asp-items="@Html.GetEnumSelectList<ToppingsEnum>()"></select>
       </div>
-      @*
-      @foreach (var toppings in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.ToppingsEnum)))
-      {
-        <div class="columns">
-          <div class="column is-3">
-            <label class="current-order-items" asp-for="Toppings">@toppings</label>
-          </div>
-          <div class="column is-1">
-            <input type="radio" asp-for="Toppings" name="@toppings" value="@toppings"/>
-          </div>
-        </div>
-      }
-*@
+     
       <div>
         <h1 class="section-dish-small"> Cheese </h1>
         <hr/>
@@ -136,17 +100,6 @@
         <select asp-for="OrderItem.Cheese" asp-items="@Html.GetEnumSelectList<CheeseEnum>()"></select>
       </div>
       
-      @* @foreach (var cheese in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.CheeseEnum)))
-      {
-        <div class="columns">
-          <div class="column is-3">
-            <label class="current-order-items" asp-for="Cheese">@cheese</label>
-          </div>
-          <div class="column is-1">
-            <input type="radio" asp-for="Cheese" name="@cheese" value="@cheese"/>
-          </div>
-        </div>
-      } *@
       
       <div>
         <h1 class="section-dish-small"> Sauces </h1>
@@ -155,26 +108,7 @@
       <div>
         <select asp-for="OrderItem.Sauce" asp-items="@Html.GetEnumSelectList<SauceEnum>()"></select>
       </div>
-      @* @foreach (var sauce in System.Enum.GetValues(typeof(BeansBurgers_v2.Models.SauceEnum)))
-      {
-        <div class="columns">
-          <div class="column is-3">
-            <h4 class="current-order-items">@sauce</h4>
-          </div>
-          <div class="column is-1">
-            <input type="radio" id="none" name="@sauce" value="None">
-            <label class="current-order-items" for="none">None</label><br>
-          </div>
-          <div class="column is-1">
-            <input type="radio" id="Normal" name="@sauce" value="Normal">
-            <label class="current-order-items" for="Normal">Normal</label><br>
-          </div>
-          <div class="column is-1">
-            <input type="radio" id="Double" name="@sauce" value="Double">
-            <label class="current-order-items" for="Double">Double</label>
-          </div>
-        </div>
-      }  *@
+      
     </div>
   </form>
 </div>

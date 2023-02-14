@@ -57,13 +57,6 @@
          <h3>Grand Total</h3>
           <p>$@Model.grandTotal</p>
 
-
-        <p>-========================</p>
-
-        <p>@Model.OrderDetails.totalItems</p>
-        <p>@Model.OrderDetails.totalPrice</p>
-        <p>@Model.OrderDetails.totalTax</p>
-        <p>@Model.OrderDetails.grandTotal</p>
         <ul id="cart">
             @foreach (var product in Model.OrderItems)
             {

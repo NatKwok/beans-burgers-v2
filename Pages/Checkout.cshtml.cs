@@ -61,15 +61,7 @@ namespace BeansBurgers_v2.Pages
             using(var ms = new MemoryStream(content))
                 blob.Upload(ms, overwrite: true);
             
-            /*double totalPrice = 0;
-            for(int i = 0; i < db.OrderItems.ToList().Count(); i++) {
-                dataString = string.Concat(dataString, db.OrderItems.ToList()[i].CustomBurger + " = " + db.OrderItems.ToList()[i].BurgerPrice + " x " + db.OrderItems.ToList()[i].Quantity + "\n");
-                totalPrice += (db.OrderItems.ToList()[i].BurgerPrice * db.OrderItems.ToList()[i].Quantity);
-            }
-            double totalTax = totalPrice * 0.15;
-            totalPrice *= 1.15;   
-            dataString = string.Concat(dataString, "Total tax = " + totalTax + "\n");
-            dataString = string.Concat(dataString, "Total price = " + totalPrice);*/       
+      
             return RedirectToPage("CheckoutConfirmation", new{id = OrderDetails.Id} );
         }
 
