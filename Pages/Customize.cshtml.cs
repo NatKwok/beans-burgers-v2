@@ -46,28 +46,18 @@ namespace BeansBurgers_v2.Pages
 
             OrderItems = await _db.OrderItems.ToListAsync();
             OrderItem = await _db.OrderItems.Where(i => i.Id == id).Include(oi => oi.MenuItem).FirstOrDefaultAsync();
-            Console.WriteLine("Pepsi_______________" + OrderItem.MenuItem.Name);
             ItemName = OrderItem.MenuItem.Name;
             ItemId = OrderItem.MenuItem.Id;
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            Console.WriteLine("\\\\ItemID: \\\\\\" + ItemId);
             //OrderItems = await _db.OrderItems.ToListAsync();
             //OrderItem OrderItemOld = await _db.OrderItems.Where(i => i.Id == id).Include(oi => oi.MenuItem).FirstOrDefaultAsync();
             // _db.Entry(OrderItemOld).State = EntityState.Detached;
             // OrderItem.MenuItem = OrderItemOld.MenuItem;
-            // Console.WriteLine(OrderItem.MenuItem.Id);
             MenuItem mi = _db.MenuItems.Where(i => i.Id == ItemId).FirstOrDefault();
-            if (mi != null)
-            {
-                Console.WriteLine("\\\\\\\\MenuItem:\\\\\\\\\\ " + mi.Name);
-            }
-            else
-            {
-                return NotFound();
-            }
+
             OrderItem.MenuItem = mi;
 
 

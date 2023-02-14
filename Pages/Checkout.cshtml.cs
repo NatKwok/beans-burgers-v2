@@ -48,7 +48,6 @@ namespace BeansBurgers_v2.Pages
 
             db.OrdersDetails.Add(OrderDetails);
             db.SaveChanges();
-            Console.WriteLine(OrderDetails.Id);
 
         //Send Receipt String to Blob
             string dataString = OrderDetails.ToString();

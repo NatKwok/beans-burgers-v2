@@ -48,10 +48,14 @@
         <a asp-page="/Checkout"><button>Checkout</button></a>
         <p class="current-order"> Current Order </p>
         <hr/>
-        <p>@Model.totalItems</p>
-        <p>@Model.totalPrice</p>
-         <p>@Model.totalTax</p>
-          <p>@Model.grandTotal</p>
+        <h3>Total Items</h3>
+        <p>$@Model.totalItems</p>
+        <h3>Total Price</h3>
+        <p>$@Model.totalPrice</p>
+        <h3>Total Tax</h3>
+         <p>$@Model.totalTax</p>
+         <h3>Grand Total</h3>
+          <p>$@Model.grandTotal</p>
 
 
         <p>-========================</p>

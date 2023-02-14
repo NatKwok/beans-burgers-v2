@@ -43,17 +43,13 @@ namespace BeansBurgers_v2.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Console.WriteLine("Post");
             string itemIndex = Request.Form["Order"];
             int itemInt = Int32.Parse(itemIndex);
             MenuItem add = db.MenuItems.ToList().ElementAt(itemInt - 1);
 
-            Console.WriteLine("____________________" + add.Name);
             OrderItem cartItem = new OrderItem { MenuItem = add, CustomBurger = add.Name, BurgerPrice = (float)add.Price, Quantity = 1 };
             db.OrderItems.Add(cartItem);
             db.SaveChanges();
-
-            Console.WriteLine(MenuItems.Count);
 
             Ingredients = await db.Ingredients.ToListAsync();
             MenuItems = await db.MenuItems.ToListAsync();

@@ -300,7 +300,7 @@ namespace BeansBurgers_v2.Data
                     Id = 8,
                     Name = "7-Up",
                     Price = 3.50f,
-                    ImageName = "https://beansburgersblobs.blob.core.windows.net/beansburgers/7-Up.png"
+                    ImageName = "https://beansburgersblobs.blob.core.windows.net/beansburgers/7up.png"
                 },
                 new MenuItem
                 {
