@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeansBurgers_v2.Data;
 using BeansBurgers_v2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeansBurgers_v2.Pages_MenuItems
 {
+    [Authorize(Roles = "admin")]
     public class EditModel : PageModel
     {
         private readonly BeansBurgers_v2.Data.ApplicationDbContext _context;
@@ -30,7 +32,7 @@ namespace BeansBurgers_v2.Pages_MenuItems
                 return NotFound();
             }
 
-            var menuitem =  await _context.MenuItems.FirstOrDefaultAsync(m => m.Id == id);
+            var menuitem = await _context.MenuItems.FirstOrDefaultAsync(m => m.Id == id);
             if (menuitem == null)
             {
                 return NotFound();
@@ -71,7 +73,7 @@ namespace BeansBurgers_v2.Pages_MenuItems
 
         private bool MenuItemExists(int id)
         {
-          return _context.MenuItems.Any(e => e.Id == id);
+            return _context.MenuItems.Any(e => e.Id == id);
         }
     }
 }

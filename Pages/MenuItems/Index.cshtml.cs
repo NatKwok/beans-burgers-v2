@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeansBurgers_v2.Data;
 using BeansBurgers_v2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeansBurgers_v2.Pages_MenuItems
 {
+    [Authorize(Roles = "admin")]
     public class IndexModel : PageModel
     {
         private readonly BeansBurgers_v2.Data.ApplicationDbContext _context;
@@ -19,7 +21,7 @@ namespace BeansBurgers_v2.Pages_MenuItems
             _context = context;
         }
 
-        public IList<MenuItem> MenuItem { get;set; } = default!;
+        public IList<MenuItem> MenuItem { get; set; } = default!;
 
         public async Task OnGetAsync()
         {

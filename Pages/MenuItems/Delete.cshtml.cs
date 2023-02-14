@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeansBurgers_v2.Data;
 using BeansBurgers_v2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeansBurgers_v2.Pages_MenuItems
 {
+    [Authorize(Roles = "admin")]
     public class DeleteModel : PageModel
     {
         private readonly BeansBurgers_v2.Data.ApplicationDbContext _context;
@@ -20,7 +22,7 @@ namespace BeansBurgers_v2.Pages_MenuItems
         }
 
         [BindProperty]
-      public MenuItem MenuItem { get; set; }
+        public MenuItem MenuItem { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,7 +37,7 @@ namespace BeansBurgers_v2.Pages_MenuItems
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 MenuItem = menuitem;
             }

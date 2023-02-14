@@ -44,7 +44,7 @@ namespace BeansBurgersv2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
 
                     b.HasData(
                         new
@@ -295,7 +295,7 @@ namespace BeansBurgersv2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MenuItems");
+                    b.ToTable("MenuItems", (string)null);
 
                     b.HasData(
                         new
@@ -481,7 +481,7 @@ namespace BeansBurgersv2.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("BeansBurgers_v2.Models.OrderDetails", b =>
@@ -506,7 +506,7 @@ namespace BeansBurgersv2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrdersDetails");
+                    b.ToTable("OrdersDetails", (string)null);
                 });
 
             modelBuilder.Entity("BeansBurgers_v2.Models.OrderItem", b =>
@@ -561,7 +561,7 @@ namespace BeansBurgersv2.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("BeansBurgers_v2.Models.PaymentInfo", b =>
@@ -594,7 +594,7 @@ namespace BeansBurgersv2.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("PaymentInfos");
+                    b.ToTable("PaymentInfos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
