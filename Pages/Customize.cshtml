@@ -55,7 +55,9 @@
 <div>
   <form method="post" asp-asp-page="/Customize"> 
     <input class="userInput" type="number" value="1" name="Quantity">
-    <a asp-page="/Customize"><button class="btn text-white current-order" type="submit" name="Accept" value="">Complete Customization</button></a>
+    <button class="btn text-white current-order" type="submit" name="Accept" value="">
+      Complete Customization
+    </button>
     <input type="hidden" asp-for="MenuItem.Id"/>
     <div id="productsWrapper" class="row">     
       <div>

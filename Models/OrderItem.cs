@@ -14,6 +14,10 @@ namespace BeansBurgers_v2.Models {
         public float BurgerPrice {get; set;}
         public int Quantity {get; set;}
         public string Description {get; set;}
+        public BunsEnum Buns { get; set; }
+        public PattiesEnum Patties { get; set; }
+        public ToppingsEnum Toppings { get; set; }
+        public SauceEnum Sauces { get; set; }
         
     }
 }
