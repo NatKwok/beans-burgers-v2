@@ -15,10 +15,10 @@
     padding: 1.5% 9% 1.5% 9%; 
     border-radius: 20px;
     border: none;
-    font-size: 200%;
+    font-size: 100%;
     font-weight: 600;
     letter-spacing: 2px;
-    color: white;
+    color: rgb(250, 149, 8);
     text-shadow: 0px 0px 1px white;
     background-image: linear-gradient(transparent, transparent, transparent));
     box-shadow: 0px 0px 1px 1px white;
@@ -49,13 +49,17 @@
         <p class="current-order"> Current Order </p>
         <hr/>
         <h3>Total Items</h3>
-        <p>$@Model.totalItems</p>
+        <p>@Model.totalItems</p>
+
         <h3>Total Price</h3>
-        <p>$@Model.totalPrice</p>
+        <p>$@string.Format("{0:0.00}", @Model.totalPrice)</p>
+
         <h3>Total Tax</h3>
-         <p>$@Model.totalTax</p>
+        <p>$@string.Format("{0:0.00}", @Model.totalTax)</p>
+
          <h3>Grand Total</h3>
-          <p>$@Model.grandTotal</p>
+         <p>$@string.Format("{0:0.00}", @Model.grandTotal)</p>
+
 
         <ul id="cart">
             @foreach (var product in Model.OrderItems)

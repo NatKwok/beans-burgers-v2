@@ -57,7 +57,7 @@
     <input asp-for="OrderItem.Quantity" class="userInput" type="number"/>
     @* <input asp-for="OrderItem.BurgerPrice" class="userInput" type="number"/> *@
     <p>@Model.OrderItem.MenuItem.Name</p>
-    <p>@Model.OrderItem.BurgerPrice</p>
+    <p>$@Model.OrderItem.BurgerPrice</p>
     <button class="btn text-white current-order" type="submit" name="Accept" value="">
       Complete Customization
     </button>
