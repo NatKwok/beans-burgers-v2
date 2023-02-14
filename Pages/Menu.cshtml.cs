@@ -17,9 +17,9 @@ namespace BeansBurgers_v2.Pages
         public MenuItem MenuItem {get; set;}
         public int totalItems {get; set;} = 0;
         public double totalPrice {get; set;} =0;
-
-               public double totalTax {get; set;} = 0;
-               public double grandTotal {get; set;} = 0;
+        public double totalTax {get; set;} = 0;
+        public double grandTotal {get; set;} = 0;
+        public OrderDetails OrderDetails {get; set;} = new OrderDetails();
         
         public async Task OnGetAsync(){
 
@@ -28,6 +28,14 @@ namespace BeansBurgers_v2.Pages
             OrderItems = await db.OrderItems.ToListAsync();
             MenuItem = await db.MenuItems.FindAsync(Id);
             CalcTotals();
+            OrderDetails = new OrderDetails() {
+                OrderItemsList = OrderItems,
+                totalItems = totalItems,
+                totalPrice = totalPrice,
+                totalTax = totalTax,
+                grandTotal = grandTotal
+
+            };
 
         }
 
@@ -48,6 +56,12 @@ namespace BeansBurgers_v2.Pages
             OrderItems = await db.OrderItems.ToListAsync();
             CalcTotals();
 
+            OrderDetails.OrderItemsList = OrderItems;
+            OrderDetails.totalItems = totalItems;
+            OrderDetails.totalPrice = totalPrice;
+            OrderDetails.totalTax = totalTax;
+            OrderDetails.grandTotal = grandTotal;
+
             return Page();
         }
 
@@ -58,7 +72,7 @@ namespace BeansBurgers_v2.Pages
                 foreach (var item in OrderItems)
                 {
                   totalItems += item.Quantity;  
-                  totalPrice += item.BurgerPrice;  
+                  totalPrice += item.BurgerPrice * item.Quantity;  
 
                 }
 
@@ -66,6 +80,7 @@ namespace BeansBurgers_v2.Pages
                 grandTotal = totalTax + totalPrice;
             }
         }
+        
     }
 
 }

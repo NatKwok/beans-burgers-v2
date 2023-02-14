@@ -52,6 +52,14 @@
         <p>@Model.totalPrice</p>
          <p>@Model.totalTax</p>
           <p>@Model.grandTotal</p>
+
+
+        <p>-========================</p>
+
+        <p>@Model.OrderDetails.totalItems</p>
+        <p>@Model.OrderDetails.totalPrice</p>
+        <p>@Model.OrderDetails.totalTax</p>
+        <p>@Model.OrderDetails.grandTotal</p>
         <ul id="cart">
             @foreach (var product in Model.OrderItems)
             {
@@ -110,7 +118,7 @@
                         <a title="Order @product.Name">
                             <div class="productInfo">
                                 
-                                <img class="product-image img-fluid img-thumbnail" src="/.images/@product.ImageName" alt="Image of @product.Name" />
+                                <img class="product-image img-fluid img-thumbnail" src="@product.ImageName" alt="Image of @product.Name" />
                                 <p class="product-title">@product.Name</p> 
                                 <p class="description">@product.Description</p>
                             </div>

@@ -246,20 +246,23 @@ namespace BeansBurgers_v2.Data {
                 {
                     Id = 1,
                     Name = "Fries",
-                    Price = 5.50f
+                    Price = 5.50f,
+                    ImageName = "https://beansburgersblobs.blob.core.windows.net/beansburgers/Fries.png"
                   
                 },
                 new MenuItem
                 {
                     Id = 2,
                     Name = "Poutine",
-                    Price = 7.50f
+                    Price = 7.50f,
+                    ImageName = "https://beansburgersblobs.blob.core.windows.net/beansburgers/Poutine.png"
                 },
                 new MenuItem
                 {
                     Id = 3,
                     Name = "Chicken Nuggets",
-                    Price = 6.50f
+                    Price = 6.50f,
+                    ImageName = "https://beansburgersblobs.blob.core.windows.net/beansburgers/Chicken Nuggets.png"
                 },
                 new MenuItem
                 {
@@ -376,6 +379,14 @@ namespace BeansBurgers_v2.Data {
                     Name = "Le Mex",
                     Price = 31.75f,
                     Description = "Brioche, Angus Beef, Lettuce, Tomatoes, Pickles, Jalapeno Monterey Jack, Pico de Gallo, Guacamole"
+                },
+                    new MenuItem
+                {
+                    Id = 22,
+                    Name = "Fries",
+                    Price = 5.50f,
+                    ImageName = "https://beansburgersblobs.blob.core.windows.net/beansburgers/Fries.png"
+                  
                 }
             );
             return modelBuilder;
