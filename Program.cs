@@ -16,6 +16,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //Security Settings
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    // Tell the app to use roles
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
@@ -42,14 +44,14 @@ builder.Services.Configure<IdentityOptions>(options =>
         options.User.RequireUniqueEmail = true;
         options.SignIn.RequireConfirmedAccount = false;
     });
-    
+
 builder.Services.ConfigureApplicationCookie(options =>
     {
         // Cookie settings
         options.Cookie.HttpOnly = true;
         options.ExpireTimeSpan = TimeSpan.FromMinutes(25);
 
-        options.LoginPath = "/Account/Login";
+        options.LoginPath = "/Identity/Account/Login";
         options.AccessDeniedPath = "/AccessDenied";
         options.SlidingExpiration = true;
     });
@@ -90,5 +92,6 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();
+
 
 app.Run();
