@@ -1,0 +1,57 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+<style>
+    ul {
+        list-style-type: none;
+    }
+    h1, a, p, h3, hr {
+        color: white;
+    }
+    button{
+    padding: 1.5% 9% 1.5% 9%; 
+    border-radius: 20px;
+    border: none;
+    font-size: 200%;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 0px 0px 1px white;
+    background-image: linear-gradient(transparent, transparent, transparent);
+    box-shadow: 0px 0px 1px 1px white;
+    }
+    a{
+        text-decoration: none;
+    }
+    .nope{
+        background-image: none;
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+    
+    .col-sm-2{
+        background-image: radial-gradient(transparent, transparent, rgb(53, 53, 53));
+        margin: 5px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 1px 1px orange;
+    }
+</style>
+
+<header>
+    <h1>@ViewData["Title"]</h1>
+    @{
+        if (User.Identity.IsAuthenticated)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-white">Click here to Logout</button>
+            </form>
+        }
+        else
+        {
+            <p>You have successfully logged out of the application.</p>
+        }
+    }
+</header>
